@@ -24,10 +24,10 @@ export const App = () => {
 	}, []);
 
 	return (
-		<main>	
-      <h1>Sauce Store</h1>
-			<h2>All things 🔥</h2>
-			<SaucesList sauces={sauces} />
-		</main>
-	)
+    <main>
+      <h1 className='text-3xl font-bold underline text-red-700'>Sauce Store</h1>
+      <h2>All things 🔥</h2>
+      <SaucesList sauces={sauces} />
+    </main>
+  );
 }
