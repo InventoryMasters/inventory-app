@@ -14,12 +14,7 @@ Category.hasMany(Item, {
   }
 });
 Item.belongsTo(Category, {
-  foreignKey: {
-    name: 'categoryId',
-    allowNull: false,
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE'
-  }
+  foreignKey: 'categoryId'
 });
 
 module.exports = {
@@ -27,6 +22,6 @@ module.exports = {
   Category,
   User, 
   sequelize,
-  Sequelize
+  
 };
 
