@@ -1,7 +1,7 @@
 const {Sequelize} = require('sequelize')
 const {sequelize} = require('../db')
 
-const Item = require('./item');
+const Item = require('./Item');
 const Category = require('./Category');
 const User = require('./User'); 
 
