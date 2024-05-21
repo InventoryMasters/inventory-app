@@ -5,8 +5,22 @@ const Item = require('./item');
 const Category = require('./Category');
 const User = require('./User'); 
 
-Item.belongsTo(Category, { foreignKey: 'categoryId' });
-Category.hasMany(Item, { foreignKey: 'categoryId' });
+Category.hasMany(Item, {
+  foreignKey: {
+    name: 'categoryId',
+    allowNull: false,
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
+  }
+});
+Item.belongsTo(Category, {
+  foreignKey: {
+    name: 'categoryId',
+    allowNull: false,
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
+  }
+});
 
 module.exports = {
   Item,

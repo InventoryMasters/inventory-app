@@ -32,15 +32,6 @@ const Item = sequelize.define('item' , {
         type: DataTypes.STRING,
         allowNull: false
       },
-      categoryId: {
-        type: DataTypes.UUID,
-        references: {
-          model: 'Categories',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      },
       createdAt: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.NOW
