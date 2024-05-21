@@ -30,12 +30,11 @@ const getUser = async (req, res) => {
 const createUser = async (req, res) => {
     try {
         const userInfo = req.body;
-        await User.create(userInfo);
-        const newUser = await User.findOne({ where: { email: userInfo.email } });
+        const newUser = await User.create(userInfo);
         if (!newUser) {
-            res.status(500).json({ error: 'Error creating user '});
+            res.status(400).json({ error: 'Error creating user '});
         } else {
-            res.status(200).json(newUser);
+            res.status(201).json(newUser);
         }
     } catch (error) {
         res.status(500).send(error);
@@ -46,7 +45,7 @@ const updateUser = async (req, res) => {
     try {
         const newInfo = req.body;
         const userId = req.params.userId;
-        const user = User.findByPk(userId);
+        const user = await User.findByPk(userId);
         if (!user) {
             res.status(404).send(`Error updating user: User with ID ${userId} not found`);
         } else {
@@ -61,7 +60,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const userId = req.params.userId;
-        const user = User.findByPk(userId);
+        const user = await User.findByPk(userId);
         if (!user) {
             res.status(404).send(`Error deleting user: User with ID ${userId} not found`);
         } else {
