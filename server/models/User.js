@@ -53,7 +53,7 @@ const User = sequelize.define('user', {
                     throw new Error('Password must have at least one uppercase letter!');
                 }
             },
-            constainsLowercase(value) {
+            containsLowercase(value) {
                 if (!/[a-z]/.test(value)) {
                     throw new Error('Password must have at least one lowercase letter!');
                 }
