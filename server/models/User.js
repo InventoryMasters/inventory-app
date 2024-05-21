@@ -9,11 +9,23 @@ const User = sequelize.define('user', {
     },
     firstName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            len: {
+                args: [2],
+                msg: 'First name must be at least 2 letters long!'
+            }
+        }
     },
     lastName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            len: {
+                args: [2],
+                msg: 'Last name must be at least 2 letters long!'
+            }
+        }
     },
     email: {
         type: DataTypes.STRING,
@@ -33,7 +45,7 @@ const User = sequelize.define('user', {
             },
             containsSpecialChar(value) {
                 if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
-                    throw new Error('Password must be between 8 and 24 characters and have at least one special character!');
+                    throw new Error('Password must have at least one special character!');
                 }
             },
             containsUppercase(value) {
