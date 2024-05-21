@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
-const Item = sequelize.define('Item' , {
+const Item = sequelize.define('item' , {
      id: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -9,7 +9,12 @@ const Item = sequelize.define('Item' , {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            len: {
+                args: [2]
+            }
+        }
       },
       description: {
         type: DataTypes.STRING,
@@ -25,21 +30,12 @@ const Item = sequelize.define('Item' , {
       },
       imageUrl: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
       },
       categoryId: {
         type: DataTypes.UUID,
         references: {
           model: 'Categories',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      },
-      userId: {
-        type: DataTypes.UUID,
-        references: {
-          model: 'Users', 
           key: 'id'
         },
         onUpdate: 'CASCADE',
@@ -57,4 +53,3 @@ const Item = sequelize.define('Item' , {
     
     module.exports = Item;
 
-    
