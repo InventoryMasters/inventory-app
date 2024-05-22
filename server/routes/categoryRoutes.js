@@ -14,7 +14,7 @@ const { validateCategoryName } = require('../validators/categoryValidator');
 Router.get('/categories', getAllCategories);
 Router.get('/categories/:categoryId', getCategory);
 Router.post('/categories', [validateCategoryName], createCategory);
-Router.put('/categories', [validateCategoryName], updateCategory);
+Router.put('/categories/:categoryId', [validateCategoryName], updateCategory);
 Router.delete('/categories/:categoryId', deleteCategory);
 
 module.exports = Router;

@@ -18,7 +18,7 @@ const getAllCategories = async (req, res) => {
 
 const getCategory = async (req, res) => {
     try {
-        const categoryId = req.param.categoryId;
+        const categoryId = req.params.categoryId;
         const category = await Category.findByPk(categoryId);
 
         if (!category) {
