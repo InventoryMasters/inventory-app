@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-// different model routers
+
+router.use('/items', require('./itemRoutes');
 router.use('/users', require('./users'));
+
+
 
 module.exports = router;
