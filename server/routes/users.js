@@ -11,10 +11,10 @@ const {
 
 const { validateName, validatePassword } = require('../validators/userValidator');
 
-Router.get('/users', getAllUsers);
-Router.get('/users/:userId', getUser);
-Router.post('/users', [validateName, validatePassword], createUser);
-Router.put('/users/:userId', [validateName, validatePassword], updateUser);
-Router.delete('/users/:userId', deleteUser);
+Router.get('/', getAllUsers);
+Router.get('/:userId', getUser);
+Router.post('/', [validateName, validatePassword], createUser);
+Router.put('/:userId', [validateName, validatePassword], updateUser);
+Router.delete('/:userId', deleteUser);
 
 module.exports = Router;
