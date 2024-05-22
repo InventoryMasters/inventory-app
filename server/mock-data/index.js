@@ -1,5 +1,5 @@
 const mockUser = require('./mockUser');
-const mockItem = require('./mockItem');
+const items = require('./itemData');
 const mockCategory = require('./mockCategory');
 
 module.exports = { mockUser, mockItem , mockCategory };
