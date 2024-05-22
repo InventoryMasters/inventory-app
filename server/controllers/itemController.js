@@ -1,9 +1,9 @@
-const { Item } = require('../models/index');
+const { Item, Category } = require('../models/index');
 const { body, validationResult } = require('express-validator');
 
 const getAllItems = async (req, res) => {
     try {
-        const items = await Item.findAll();
+        const items = await Item.findAll({ include: Category });
         if (!items) {
             res.status(404).send("Error fetching items: Items not found");
         } else {
@@ -17,7 +17,7 @@ const getAllItems = async (req, res) => {
 const getItem = async (req, res) => {
     try {
         const itemId = req.params.itemId;
-        const item = await Item.findByPk(itemId);
+        const item = await Item.findByPk(itemId, { include: Category });
         if (!item) {
             res.status(404).send(`Error fetching item: Item with ID ${itemId} not found`);
         } else {
