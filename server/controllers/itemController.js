@@ -30,5 +30,6 @@ const getItem = async (req, res) => {
 module.exports = {
     getAllItems,
     getItem,
-    createItem
+    createItem,
+    updateItem
 }
