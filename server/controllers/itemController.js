@@ -31,5 +31,6 @@ module.exports = {
     getAllItems,
     getItem,
     createItem,
-    updateItem
+    updateItem,
+    deleteItem
 }
