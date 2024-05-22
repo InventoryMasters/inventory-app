@@ -8,4 +8,7 @@ const itemRoutes = require('./itemRoutes');
 router.use(userRoutes);
 router.use(itemRoutes);
 
+router.use('/users', require('./users'));
+
+
 module.exports = router;
