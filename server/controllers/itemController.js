@@ -29,5 +29,6 @@ const getItem = async (req, res) => {
 
 module.exports = {
     getAllItems,
-    getItem
+    getItem,
+    createItem
 }
