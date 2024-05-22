@@ -1,5 +1,5 @@
 const { User } = require('../models/index');
-const { validationResult } = require('express-validator');
+// const { validationResult } = require('express-validator');
 
 const getAllUsers = async (req, res) => {
     try {
@@ -29,15 +29,15 @@ const getUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     try {
         const userInfo = req.body;
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
         const newUser = await User.create(userInfo);
         if (!newUser) {
-            res.status(400).json({ error: 'Error creating user '});
+            res.status(400).json({ error: 'Error creating user ' });
         } else {
             res.status(201).json(newUser);
         }
@@ -47,13 +47,13 @@ const createUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
     try {
         const newInfo = req.body;
         const userId = req.params.userId;
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
         const user = await User.findByPk(userId);
         if (!user) {
             res.status(404).send(`Error updating user: User with ID ${userId} not found`);
