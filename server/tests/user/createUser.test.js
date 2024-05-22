@@ -37,7 +37,7 @@ describe('User creation', () => {
             firstName: 'Dwight',
             lastName: 'Schrute',
             email: 'DwightSchrute@gmail.com',
-            passwordHash: 'p'
+            passwordHash: 'Password1@'
         }
 
         it('should require a first name length greater than 1 character', async () => {
