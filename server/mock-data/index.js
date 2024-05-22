@@ -1,5 +1,5 @@
-import mockUser from './mockUser';
-import mockItem from './mockItem';
-import mockCategory from './mockCategory';
+const mockUser = require('./mockUser');
+const mockItem = require('./mockItem');
+const mockCategory = require('./mockCategory');
 
-module.exports = { mockUser, mockItem, mockCategory };
+module.exports = { mockUser, mockItem , mockCategory };
