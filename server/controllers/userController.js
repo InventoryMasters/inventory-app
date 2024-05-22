@@ -1,5 +1,5 @@
 const { User } = require('../models/index');
-// const { validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 
 const getAllUsers = async (req, res) => {
     try {
