@@ -37,7 +37,7 @@ const createUser = async (req, res) => {
         }
         const newUser = await User.create(userInfo);
         if (!newUser) {
-            res.status(400).json({ error: 'Error creating user ' });
+            res.status(400).json({ error: 'Error creating user '});
         } else {
             res.status(201).json(newUser);
         }
