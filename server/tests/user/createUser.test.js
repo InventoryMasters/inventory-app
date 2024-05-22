@@ -14,17 +14,15 @@ afterAll(async () => {
 
 describe('User creation', () => {
 
-    const user = {
-        firstName: 'Michael',
-        lastName: 'Scott',
-        email: 'MichaelScott@gmail.com',
-        passwordHash: 'Password1@'
-    }
-
     it('should create a user with valid input', async () => {
         const response = await request(app)
             .post('/api/users')
-            .send(user)
+            .send({
+                firstName: 'Michael',
+                lastName: 'Scott',
+                email: 'MichaelScott@gmail.com',
+                passwordHash: 'Password1@'
+            })
         expect(response.statusCode).toBe(201);
         const createdUser = await User.findOne({ where: { email: 'MichaelScott@gmail.com' } });
         expect(createdUser).toBeTruthy();
