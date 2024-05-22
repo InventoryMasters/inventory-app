@@ -1,5 +1,6 @@
-const { mockItem, mockUser } = require('./mock-data/index.js');
-const { User, Item } = require('./models/index.js');
+const { mockItem, mockUser, mockCategory } = require('./mock-data/index.js');
+const { User, Item, Category } = require('./models/index.js');
+const getRandomCategoryIds = require('./seedUtils/seedUtils.js');
 const sequelize = require('./db');
 
 const seed = async () => {
@@ -7,10 +8,28 @@ const seed = async () => {
     // drop and recreate tables per model definitions
     await sequelize.sync({ force: true });
 
+    //seed users
     await Promise.all(mockUser.map((user) => User.create(user)));
     console.log('All users have been seeded successfully...');
 
-    await Promise.all(mockItem.map((item) => Item.create(item)));
+    //seed category
+    await Promise.all(
+      mockCategory.map((category) => Category.create(category))
+    );
+    console.log('All categories have been seeded successfully...');
+
+    //seed items with random categories
+    await Promise.all(
+      mockItem.map(async (item) => {
+        const createdItem = await Item.create(item);
+        const randomCategoryIds = getRandomCategoryIds();
+        await Promise.all(
+          randomCategoryIds.map(async (categoryId) => {
+            await createdItem.setCategory(categoryId);
+          })
+        );
+      })
+    );
     console.log('All items have been seeded successfully...');
 
     console.log('___DB POPULATED SUCCESSFULLY___');
