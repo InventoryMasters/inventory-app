@@ -5,11 +5,11 @@ const { getAllItems, getItem, createItem, updateItem, deleteItem } = require('..
 
 
 
-Router.get('/items', getAllItems);
-Router.get('/items/:itemId', getItem);
-Router.post('/items', createItem);
-Router.put('/items/:itemId', updateItem);
-Router.delete('/items/:itemId', deleteItem);
+Router.get('/', getAllItems);
+Router.get('/:itemId', getItem);
+Router.post('/', createItem);
+Router.put('/:itemId', updateItem);
+Router.delete('/:itemId', deleteItem);
 
 module.exports = Router;
 
