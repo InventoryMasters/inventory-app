@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { checkTokenBlacklist } = require('../middleware/tokenMiddleware');
+const { requireToken } = require('../middleware/authMiddleware');
 
 const {
   login,
@@ -10,7 +10,7 @@ const {
 
 router.post('/login', login);
 router.post('/signup', signup);
-router.post('/logout', logout);
+router.post('/logout', requireToken, logout);
 router.post('/check-email', emailCheck);
 
 module.exports = router;
