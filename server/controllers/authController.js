@@ -1,5 +1,6 @@
 const { User } = require('../models/index');
 const { addToBlacklist } = require('../tokenUtils/tokenBlacklist');
+const { validationResult } = require('express-validator');
 
 /**
  * USER EMAIL CHECKER (will use on a front end)
@@ -33,6 +34,10 @@ const login = async (req, res, next) => {
 };
 
 const signup = async (req, res, next) => {
+  const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+          return res.status(400).json({ errors: errors.array() });
+      }
   try {
     const { firstName, lastName, email, passwordHash } = req.body;
 
@@ -43,7 +48,6 @@ const signup = async (req, res, next) => {
       passwordHash: passwordHash.trim(),
     });
 
-    console.log({ newUser });
     if (newUser.id) {
       res.status(201).json({
         token: await User.authenticate({
