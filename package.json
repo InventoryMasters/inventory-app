@@ -3,14 +3,15 @@
   "version": "1.2.0",
   "scripts": {
     "test": "jest",
-    "client-dev": "parcel public/index.html --open",
+    "client-dev": "parcel client/public/index.html --open",
     "server-dev": "nodemon server.js",
     "seed": "node server/seed.js",
-    "start": "parcel build public/index.html && npm run seed && node server.js"
+    "start": "parcel build client/public/index.html && npm run seed && node server.js"
   },
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
+    "axios": "^1.7.2",
     "cors": "^2.8.5",
     "dotenv": "16.0.0",
     "express": "^4.17.1",
