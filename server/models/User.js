@@ -159,7 +159,6 @@ User.verifyByToken = async (token) => {
       attributes: { exclude: ['firstName', 'lastName', 'passwordHash'] },
     });
 
-    console.log({ user });
     if (!user) {
       const err = new Error('Bad credential/malformed token');
       err.status = 401;
