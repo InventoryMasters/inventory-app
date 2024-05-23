@@ -28,25 +28,25 @@ const getUser = async (req, res) => {
     }
 }
 
-const createUser = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
-    try {
-        const userInfo = req.body;
-        const newUser = await User.create(userInfo);
-        if (!newUser) {
-            res.status(400).json({ error: 'Error creating user ' });
-        } else {
-            res.status(201).json(newUser);
-        }
-    } catch (error) {
-        res.status(500).send(error);
-    }
-}
+// const createUser = async (req, res, next) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//         return res.status(400).json({ errors: errors.array() });
+//     }
+//     try {
+//         const userInfo = req.body;
+//         const newUser = await User.create(userInfo);
+//         if (!newUser) {
+//             res.status(400).json({ error: 'Error creating user ' });
+//         } else {
+//             res.status(201).json(newUser);
+//         }
+//     } catch (error) {
+//         next(error)
+//     }
+// }
 
-const updateUser = async (req, res) => {
+const updateUser = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -62,7 +62,7 @@ const updateUser = async (req, res) => {
             res.status(200).json(user);
         }
     } catch (error) {
-        res.status(500).send(error);
+        next(error)
     }
 }
 
@@ -84,7 +84,6 @@ const deleteUser = async (req, res) => {
 module.exports = {
     getAllUsers,
     getUser,
-    createUser,
     updateUser,
     deleteUser
 }

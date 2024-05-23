@@ -1,82 +1,178 @@
 const sequelize = require('../db');
 const { DataTypes, Sequelize } = require('sequelize');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv').config();
+const SECRET = process.env.JWT;
+const SALT_ROUNDS = process.env.SALT_ROUNDS;
 
 const User = sequelize.define('user', {
-    id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        defaultValue: DataTypes.UUIDV4
+  id: {
+    type: DataTypes.UUID,
+    primaryKey: true,
+    defaultValue: DataTypes.UUIDV4,
+  },
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [2],
+        msg: 'First name must be at least 2 letters long!',
+      },
     },
-    firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: {
-                args: [2],
-                msg: 'First name must be at least 2 letters long!'
-            }
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [2],
+        msg: 'Last name must be at least 2 letters long!',
+      },
+    },
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true,
+    },
+  },
+  passwordHash: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [8, 24],
+        msg: 'Password must be between 8 and 24 characters!',
+      },
+      containsSpecialChar(value) {
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+          throw new Error('Password must have at least one special character!');
         }
-    },
-    lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: {
-                args: [2],
-                msg: 'Last name must be at least 2 letters long!'
-            }
+      },
+      containsUppercase(value) {
+        if (!/[A-Z]/.test(value)) {
+          throw new Error('Password must have at least one uppercase letter!');
         }
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-            isEmail: true
+      },
+      containsLowercase(value) {
+        if (!/[a-z]/.test(value)) {
+          throw new Error('Password must have at least one lowercase letter!');
         }
-    },
-    passwordHash: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: {
-                args: [8, 24],
-                msg: 'Password must be between 8 and 24 characters!'
-            },
-            containsSpecialChar(value) {
-                if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
-                    throw new Error('Password must have at least one special character!');
-                }
-            },
-            containsUppercase(value) {
-                if (!/[A-Z]/.test(value)) {
-                    throw new Error('Password must have at least one uppercase letter!');
-                }
-            },
-            containsLowercase(value) {
-                if (!/[a-z]/.test(value)) {
-                    throw new Error('Password must have at least one lowercase letter!');
-                }
-            },
-            containsNumber(value) {
-                if (!/\d/.test(value)) {
-                    throw new Error('Password must have at least one number!');
-                }
-            }
+      },
+      containsNumber(value) {
+        if (!/\d/.test(value)) {
+          throw new Error('Password must have at least one number!');
         }
+      },
     },
-    role: {
-        type: DataTypes.ENUM('USER', 'ADMIN'),
-        defaultValue: 'USER'
-    },
-    createdAt: {
-        type: DataTypes.DATE,
-        defaultValue: Sequelize.NOW,
-    },
-    updatedAt: {
-        type: DataTypes.DATE,
-        defaultValue: Sequelize.NOW,
+  },
+  role: {
+    type: DataTypes.ENUM('USER', 'ADMIN'),
+    defaultValue: 'USER',
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.NOW,
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.NOW,
+  },
+});
+
+/**
+ * USER HOOKS
+ */
+
+
+User.beforeCreate(async (user) => {
+  user.passwordHash = await bcrypt.hash(
+    user.passwordHash,
+    parseInt(SALT_ROUNDS)
+  );
+});
+
+User.beforeUpdate(async (user) => {
+  if (user.changed('passwordHash')) {
+    user.passwordHash = await bcrypt.hash(
+      user.passwordHash,
+      parseInt(SALT_ROUNDS)
+    );
+  }
+});
+
+
+
+/**
+ * USER AUTH CLASS METHODS
+ */
+
+User.authenticate = async ({ email, password }) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email,
+      },
+    });
+
+
+    if (!user) {
+      const err = new Error('User not found');
+      err.status = 404;
+      throw err;
     }
-})
+
+    if (
+      user &&
+      user.passwordHash &&
+      (await bcrypt.compare(password, user.passwordHash))
+    ) {
+ 
+      return jwt.sign(
+        {
+          id: user.id,
+          email: user.email,
+          role: user.role,
+        },
+        SECRET
+      );
+
+    } else {
+      const error = new Error('Incorrect username or password');
+      error.status = 401;
+      throw error;
+    }
+  } catch (err) {
+    console.error({ 'Authentication error': err.message });
+    throw err;
+  }
+};
+
+User.verifyByToken = async (token) => {
+  try {
+    const { id } = jwt.verify(token.split(' ')[1], SECRET);
+    const user = await User.findByPk(id, {
+      attributes: { exclude: ['firstName', 'lastName', 'passwordHash'] },
+    });
+
+    if (!user) {
+      const err = new Error('Bad credential/malformed token');
+      err.status = 401;
+      throw err;
+    }
+
+    return user;
+  } catch (e) {
+    console.error('Error verifying token', e.message);
+    if (e instanceof jwt.JsonWebTokenError) {
+      console.error('bad credentials/bad token', e.message);
+      throw e;
+    } else throw e;
+  }
+};
 
 module.exports = User;
