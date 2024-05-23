@@ -1,9 +1,16 @@
 const router = require('express').Router();
-// const Router = express.Router();
+const { checkTokenBlacklist } = require('../middleware/tokenMiddleware');
 
-const { login, emailCheck } = require('../controllers/authController');
+const {
+  login,
+  emailCheck,
+  signup,
+  logout,
+} = require('../controllers/authController');
 
-router.post('/', login);
-router.post('/', emailCheck)
+router.post('/login', login);
+router.post('/signup', signup);
+router.post('/logout', logout);
+router.post('/check-email', emailCheck);
 
 module.exports = router;
