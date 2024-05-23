@@ -137,7 +137,7 @@ describe('User creation', () => {
             const response = await request(app)
                 .post('/api/users')
                 .send({ ...invalidUser, email: 'DwightSchrute.email.com' })
-            const createdUser = await User.findOne({ where: { email: 'DwightSchrute@gmail.com' } });
+            const createdUser = await User.findOne({ where: { email: 'DwightSchrute.gmail.com' } });
             expect(!createdUser).toBe(true);
             expect(response.statusCode).toBe(500);
         });
