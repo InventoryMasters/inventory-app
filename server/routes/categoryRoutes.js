@@ -11,10 +11,10 @@ const {
 
 const { validateCategoryName } = require('../validators/categoryValidator');
 
-Router.get('/categories', getAllCategories);
-Router.get('/categories/:categoryId', getCategory);
-Router.post('/categories', [validateCategoryName], createCategory);
-Router.put('/categories/:categoryId', [validateCategoryName], updateCategory);
-Router.delete('/categories/:categoryId', deleteCategory);
+Router.get('/', getAllCategories);
+Router.get('/:categoryId', getCategory);
+Router.post('/', [validateCategoryName], createCategory);
+Router.put('/:categoryId', [validateCategoryName], updateCategory);
+Router.delete('/:categoryId', deleteCategory);
 
 module.exports = Router;
