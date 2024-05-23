@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-// different model routers
-router.use('/users', require('./users'));
-router.use('/auth', require('./auth'))
+const userRoutes = require('./userRoutes');
+const itemRoutes = require('./itemRoutes');
+const categoryRoutes = require('./categoryRoutes');
+
+
+router.use('/items', itemRoutes); 
+router.use('/users', userRoutes); 
+router.use('/categories', categoryRoutes);
+
 
 
 module.exports = router;
