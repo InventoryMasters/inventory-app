@@ -1,10 +1,22 @@
 const request = require('supertest');
-const app = require('../../app');
-const { User } = require('../../models/index');
-const sequelize = require('../../db');
+const app = require('../app');
+const { User } = require('../models/index');
+const sequelize = require('../db');
+
+let user;
+let userId;
 
 beforeAll(async () => {
     await sequelize.sync({ force: true });
+
+    user = await User.create({
+        firstName: 'Jim',
+        lastName: 'Halpert',
+        email: 'JimHalpert@gmail.com',
+        passwordHash: 'Password1@'
+    })
+
+    userId = user.id;
 });
 
 
@@ -54,7 +66,7 @@ describe('User creation', () => {
             const response = await request(app)
                 .post('/api/users')
                 .send({ ...invalidUser, lastName: 'S' })
-            const createdUser = await User.findOne({ where: { email: 'MichaelS@gmail.com' } });
+            const createdUser = await User.findOne({ where: { email: 'DwightSchrute@gmail.com' } });
             expect(!createdUser).toBe(true);
             expect(response.statusCode).toBe(400);
             expect(response.body.errors[0].msg).toBe('Last name must be at least 2 characters long');
@@ -119,6 +131,56 @@ describe('User creation', () => {
             expect(!createdUser).toBe(true);
             expect(response.statusCode).toBe(400);
             expect(response.body.errors[0].msg).toBe('Password must contain at least one lowercase letter');
+        });
+
+        it('should require a valid email', async () => {
+            const response = await request(app)
+                .post('/api/users')
+                .send({ ...invalidUser, email: 'DwightSchrute.email.com' })
+            const createdUser = await User.findOne({ where: { email: 'DwightSchrute.gmail.com' } });
+            expect(!createdUser).toBe(true);
+            expect(response.statusCode).toBe(500);
+        });
+    })
+})
+
+describe('User update', () => {
+    it('should update a user with valid input', async () => {
+        const response = await request(app)
+            .put(`/api/users/${userId}`)
+            .send({
+                firstName: 'Pam',
+                lastName: 'Beesly',
+                email: 'PamBeesly@gmail.com',
+                passwordHash: 'updatedPassword1@'
+            })
+
+        expect(response.statusCode).toBe(200);
+        const updatedUser = await User.findOne({ where: { email: 'PamBeesly@gmail.com' } });
+        expect(updatedUser.firstName).toBe('Pam');
+        expect(updatedUser.lastName).toBe('Beesly');
+        expect(updatedUser.passwordHash).toBe('updatedPassword1@');
+    })
+
+    describe('Validation', () => {
+        it('should require valid inputs', async () => {
+            const response = await request(app)
+                .put(`/api/users/${userId}`)
+                .send({
+                    firstName: 'P',
+                    lastName: 'B',
+                    email: 'PamBeesly@gmail.com',
+                    passwordHash: 'p'
+                })
+            const updatedUser = await User.findOne({ where: { email: 'PamBeesly@gmail.com' } });
+            expect(updatedUser.firstName).toBe('Pam');
+            expect(response.statusCode).toBe(400);
+            expect(response.body.errors[0].msg).toBe('First name must be at least 2 characters long');
+            expect(response.body.errors[1].msg).toBe('Last name must be at least 2 characters long');
+            expect(response.body.errors[2].msg).toBe('Password must be between 8 and 24 characters');
+            expect(response.body.errors[3].msg).toBe('Password must contain at least one special character');
+            expect(response.body.errors[4].msg).toBe('Password must contain at least one number');
+            expect(response.body.errors[5].msg).toBe('Password must contain at least one uppercase letter');
         });
     })
 })
