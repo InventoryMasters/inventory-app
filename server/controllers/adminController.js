@@ -24,11 +24,12 @@ const createItem = [
     }
     next();
   },
-  async (req, res) => {
+  async (req, res, next) => {
     try {
       const newItem = await Item.create(req.body);
       res.status(201).json(newItem);
     } catch (error) {
+      next(error)
       res.status(500).send(error);
     }
   },
@@ -62,7 +63,7 @@ const updateItem = [
     }
     next();
   },
-  async (req, res) => {
+  async (req, res, next) => {
     try {
       const itemId = req.params.itemId;
       const item = await Item.findByPk(itemId);
@@ -74,12 +75,13 @@ const updateItem = [
       await item.update(req.body);
       res.status(200).json(item);
     } catch (error) {
+      next(error)
       res.status(500).send(error);
     }
   },
 ];
 
-const deleteItem = async (req, res) => {
+const deleteItem = async (req, res, next) => {
   try {
     const itemId = req.params.itemId;
     const item = await Item.findByPk(itemId);
@@ -92,11 +94,12 @@ const deleteItem = async (req, res) => {
       res.status(200).send('Item removed!');
     }
   } catch (error) {
+    next(error)
     res.status(500).send(error);
   }
 };
 
-const createCategory = async (req, res) => {
+const createCategory = async (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -113,6 +116,7 @@ const createCategory = async (req, res) => {
       res.status(201).json(newCategory);
     }
   } catch (error) {
+    next(error)
     res.status(500).send(error);
   }
 };
@@ -120,7 +124,7 @@ const createCategory = async (req, res) => {
 /**
  * CATEGORY ADMIN CONTROLLER
  */
-const updateCategory = async (req, res) => {
+const updateCategory = async (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -143,11 +147,12 @@ const updateCategory = async (req, res) => {
       res.status(200).json(category);
     }
   } catch (error) {
+    next(error)
     res.status(500).send(error);
   }
 };
 
-const deleteCategory = async (req, res) => {
+const deleteCategory = async (req, res, next) => {
   try {
     const categoryId = req.params.categoryId;
     const category = await Category.findByPk(categoryId);
@@ -163,6 +168,7 @@ const deleteCategory = async (req, res) => {
       res.status(200).send('Category succesfuly removed!');
     }
   } catch (error) {
+    next(error)
     res.status(500).send(error);
   }
 };
