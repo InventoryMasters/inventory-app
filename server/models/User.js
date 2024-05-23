@@ -87,15 +87,7 @@ const User = sequelize.define('user', {
 /**
  * USER HOOKS
  */
-User.beforeValidate((user) => {
-  const MIN_PASSWORD_LEN = 8;
-  const pw = user.passwordHash;
-  if (pw && pw.length < MIN_PASSWORD_LEN) {
-    const err = new Error();
-    err.message = `Password should be minimum ${MIN_PASSWORD_LEN} characters`;
-    throw err;
-  }
-});
+
 
 User.beforeCreate(async (user) => {
   user.passwordHash = await bcrypt.hash(
@@ -104,9 +96,20 @@ User.beforeCreate(async (user) => {
   );
 });
 
-// User.beforeUpdate(async(user) => {
-//     if(user.passwordHash) user.passwordHash = await bcrypt.hash(user.passwordHash, parseInt(SALT_ROUNDS))
-// })
+User.beforeUpdate(async (user) => {
+  if (user.changed('passwordHash')) {
+    user.passwordHash = await bcrypt.hash(
+      user.passwordHash,
+      parseInt(SALT_ROUNDS)
+    );
+  }
+});
+
+
+
+/**
+ * USER AUTH CLASS METHODS
+ */
 
 User.authenticate = async ({ email, password }) => {
   try {
@@ -116,7 +119,6 @@ User.authenticate = async ({ email, password }) => {
       },
     });
 
-    console.log({user})
 
     if (!user) {
       const err = new Error('User not found');
@@ -129,8 +131,7 @@ User.authenticate = async ({ email, password }) => {
       user.passwordHash &&
       (await bcrypt.compare(password, user.passwordHash))
     ) {
-        const log = await bcrypt.compare(password, user.passwordHash);
-        console.log({log})
+ 
       return jwt.sign(
         {
           id: user.id,
@@ -140,7 +141,6 @@ User.authenticate = async ({ email, password }) => {
         SECRET
       );
 
-      console.log('WE GOT HERE')
     } else {
       const error = new Error('Incorrect username or password');
       error.status = 401;
@@ -154,13 +154,7 @@ User.authenticate = async ({ email, password }) => {
 
 User.verifyByToken = async (token) => {
   try {
-    console.log({ 'TOKEN PASSED TO VERIFY': token });
-    console.log('hello from user hook');
-    console.log({ payload: token.payload });
-    const { id } = jwt.verify(token, SECRET);
-    const decoded = jwt.verify(token.split(' ')[1], SECRET);
-    console.log({decoded})
-    console.log({ id });
+    const { id } = jwt.verify(token.split(' ')[1], SECRET);
     const user = await User.findByPk(id, {
       attributes: { exclude: ['firstName', 'lastName', 'passwordHash'] },
     });
@@ -176,10 +170,9 @@ User.verifyByToken = async (token) => {
   } catch (e) {
     console.error('Error verifying token', e.message);
     if (e instanceof jwt.JsonWebTokenError) {
-        console.error('bad credentials/bad token', e.message)
-        throw e
-    } else throw e
-
+      console.error('bad credentials/bad token', e.message);
+      throw e;
+    } else throw e;
   }
 };
 
