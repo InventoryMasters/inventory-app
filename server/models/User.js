@@ -116,6 +116,8 @@ User.authenticate = async ({ email, password }) => {
       },
     });
 
+    console.log({user})
+
     if (!user) {
       const err = new Error('User not found');
       err.status = 404;
@@ -127,6 +129,8 @@ User.authenticate = async ({ email, password }) => {
       user.passwordHash &&
       (await bcrypt.compare(password, user.passwordHash))
     ) {
+        const log = await bcrypt.compare(password, user.passwordHash);
+        console.log({log})
       return jwt.sign(
         {
           id: user.id,
@@ -135,6 +139,8 @@ User.authenticate = async ({ email, password }) => {
         },
         SECRET
       );
+
+      console.log('WE GOT HERE')
     } else {
       const error = new Error('Incorrect username or password');
       error.status = 401;
@@ -148,13 +154,20 @@ User.authenticate = async ({ email, password }) => {
 
 User.verifyByToken = async (token) => {
   try {
+    console.log({ 'TOKEN PASSED TO VERIFY': token });
+    console.log('hello from user hook');
+    console.log({ payload: token.payload });
     const { id } = jwt.verify(token, SECRET);
+    const decoded = jwt.verify(token.split(' ')[1], SECRET);
+    console.log({decoded})
+    console.log({ id });
     const user = await User.findByPk(id, {
       attributes: { exclude: ['firstName', 'lastName', 'passwordHash'] },
     });
 
+    console.log({ user });
     if (!user) {
-      const err = new Error('Bad credential/mal;formed token');
+      const err = new Error('Bad credential/malformed token');
       err.status = 401;
       throw err;
     }
@@ -162,7 +175,11 @@ User.verifyByToken = async (token) => {
     return user;
   } catch (e) {
     console.error('Error verifying token', e.message);
-    throw e;
+    if (e instanceof jwt.JsonWebTokenError) {
+        console.error('bad credentials/bad token', e.message)
+        throw e
+    } else throw e
+
   }
 };
 
