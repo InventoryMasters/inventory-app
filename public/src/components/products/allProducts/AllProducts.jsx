@@ -4,6 +4,15 @@ import apiURL from '../../../api';
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 9;
+
+  const paginate = (products, currentPage, pageSize) => {
+    const startIndex = (currentPage - 1) * pageSize;
+    return products.slice(startIndex, startIndex + pageSize);
+  }
+
+  const paginatedProducts = paginate(products, currentPage, pageSize);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,7 +30,7 @@ export default function AllProducts() {
 
   return (
     <section className='pt-20'>
-      <div className='w-full banner-container relative flex flex-col items-center p-4'>
+      <div className='w-full banner-container flex flex-col items-center p-4'>
         <img
           src='https://images.pexels.com/photos/7500307/pexels-photo-7500307.jpeg'
           alt='Banner Image'
@@ -32,7 +41,7 @@ export default function AllProducts() {
       <div className='container mx-auto'>
         <div className='grid grid-cols-3 gap-4 mt-8'>
           {Array.isArray(products) && products.length ? (
-            products.map((product) => (
+            paginatedProducts.map((product) => (
               <div key={product.id} className='max-w-[350px] flex flex-col items-center text-center'>
                 <img className='w-full h-auto' src={product.imageUrl} alt={product.name} />
                 <h2>{product.name}</h2>
@@ -43,6 +52,13 @@ export default function AllProducts() {
             <p>No products available</p>
           )}
         </div>
+        {products ?
+          <div className='text-center my-12'>
+            {currentPage > 1 ? <button onClick={() => setCurrentPage(currentPage - 1)}>&lt;</button> : ''}
+            {currentPage}
+            {currentPage < paginatedProducts.length ? <button onClick={() => setCurrentPage(currentPage + 1)}>&gt;</button> : ''}
+          </div>
+          : ""}
       </div>
     </section>
   );
