@@ -7,11 +7,14 @@ const init = async () => {
   try {
     await sequelize.sync();
 
-    app.listen(PORT, () => {
+    app.listen(PORT, async () => {
       console.log(`Server listening at http://localhost:${PORT}`);
+      // Dynamically import the open package
+      const open = (await import("open")).default;
+      await open(`http://localhost:${PORT}`); // Open the URL in the default browser
     });
   } catch (error) {
-    console.error('Error starting server:', error)
+    console.error("Error starting server:", error);
   }
 };
 
