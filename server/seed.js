@@ -18,9 +18,18 @@ const seed = async () => {
     );
     console.log('All categories have been seeded successfully...');
 
- // Seed items
- await Promise.all(items.map((item) => Item.create(item)));
- console.log('All items have been seeded successfully...');
+ // seed items
+await Promise.all(
+      mockItem.map(async (item) => {
+        const createdItem = await Item.create(item);
+        const randomCategoryIds = getRandomCategoryIds();
+        await Promise.all(
+          randomCategoryIds.map(async (categoryId) => {
+            await createdItem.setCategory(categoryId);
+          })
+        );
+      })
+    );
 
  console.log('___DB POPULATED SUCCESSFULLY___');
 } catch (error) {
