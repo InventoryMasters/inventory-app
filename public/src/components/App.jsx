@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import apiURL from '../api';
-import AllProducts from './AllProducts';
-import Navbar from './Navbar';
+import AllProducts from './products/allProducts/AllProducts';
+import Navbar from './navbar/Navbar';
 import Homepage from './Homepage';
+import SingleProduct from './products/singleProduct/SingleProduct';
 
 export const App = () => {
   return (
-    <>
+    <section className='bg-white'>
       <Navbar />
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/products' element={<AllProducts />} />
+        <Route path='/products/:id' element={<SingleProduct/>}/>
       </Routes>
-    </>
+    </section>
   );
 };
