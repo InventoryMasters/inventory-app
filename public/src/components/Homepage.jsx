@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-// import leftImage from '../asssets/homepage/homepage-left'
-// import rightImage from '../asssets/homepage/homepage-right'
+// import leftImage from '../assets/homepage/homepage-left'
+// import rightImage from '../assets/homepage/homepage-right'
 
 export default function Homepage() {
   return (
@@ -29,7 +29,6 @@ export default function Homepage() {
             </Link>
           </div>
         </div>
-
       </div>
     </>
   )
