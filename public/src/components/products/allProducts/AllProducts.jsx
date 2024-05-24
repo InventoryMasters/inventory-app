@@ -20,23 +20,23 @@ export default function AllProducts() {
   }, []);
 
   return (
-    <div className=' '>
+    <section className='pt-20'>
       <h1 className='font-abril '>All Products</h1>
       <div className=''>
         {Array.isArray(products) && products.length ? (
           products.map((product) => (
             <div key={product.id}>
-              <img src={product.imageUrl} alt={product.name} />
+              <img className='w-[350px] h-auto' src={product.imageUrl} alt={product.name} />
               <h2>{product.name}</h2>
               <p>{product.description}</p>
               <p>Price: ${product.price}</p>
               <p>Quantity: {product.qty}</p>
             </div>
-          ))
+          )) 
         ) : (
           <p>No products available</p>
         )}
       </div>
-    </div>
+    </section>
   );
 }

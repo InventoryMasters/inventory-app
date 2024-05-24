@@ -1,4 +1,4 @@
-const { mockItem, mockUser, mockCategory } = require('./mock-data/index.js');
+const { mockItem, mockUser, mockCategory, items } = require('./mock-data/index.js');
 const { User, Item, Category } = require('./models/index.js');
 const getRandomCategoryIds = require('./seedUtils/seedUtils.js');
 const sequelize = require('./db');
@@ -21,7 +21,7 @@ const seed = async () => {
 
     //seed items with random categories
     await Promise.all(
-      mockItem.map(async (item) => {
+      items.map(async (item) => {
         const createdItem = await Item.create(item);
         const randomCategoryIds = getRandomCategoryIds();
         await Promise.all(
