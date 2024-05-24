@@ -13,7 +13,7 @@ export const App = () => {
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/products' element={<AllProducts />} />
-        <Route path='/products/:productId' element={<SingleProduct/>}/>
+        <Route path='/products/:id' element={<SingleProduct/>}/>
       </Routes>
     </section>
   );
