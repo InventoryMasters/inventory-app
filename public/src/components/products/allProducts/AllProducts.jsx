@@ -21,7 +21,7 @@ export default function AllProducts() {
 
   return (
     <section className='pt-20'>
-      <div className='w-full banner-container relative flex flex-col items-center p-4'>
+      <div className='w-full banner-container flex flex-col items-center p-4'>
         <img
           src='https://images.pexels.com/photos/7500307/pexels-photo-7500307.jpeg'
           alt='Banner Image'
