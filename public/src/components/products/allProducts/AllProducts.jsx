@@ -39,7 +39,7 @@ export default function AllProducts() {
         <h1 className='font-abril mt-10'>All Products</h1>
       </div>
       <div className='container mx-auto'>
-        <div className='grid grid-cols-3 gap-4 mt-8' id=''>
+        <div className='grid grid-cols-3 gap-4 mt-8'>
           {Array.isArray(products) && products.length ? (
             paginatedProducts.map((product) => (
               <div key={product.id} className='max-w-[350px] flex flex-col items-center text-center'>
