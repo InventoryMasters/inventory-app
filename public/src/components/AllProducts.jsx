@@ -20,10 +20,10 @@ export default function AllProducts() {
   }, []);
 
   return (
-    <div>
-      <h1>All Products</h1>
-      <div>
-        {Array.isArray(products) ? (
+    <div className=' '>
+      <h1 className='font-abril '>All Products</h1>
+      <div className=''>
+        {Array.isArray(products) && products.length ? (
           products.map((product) => (
             <div key={product.id}>
               <img src={product.imageUrl} alt={product.name} />
