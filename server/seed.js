@@ -7,6 +7,7 @@ const seed = async () => {
     // drop and recreate tables per model definitions
     await sequelize.sync({ force: true });
 
+    console.log('___DB SEED STARTED___')
     //seed users
     await Promise.all(mockUser.map((user) => User.create(user)));
     console.log('All users have been seeded successfully...');
