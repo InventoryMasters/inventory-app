@@ -18,7 +18,7 @@ const seed = async () => {
     );
     console.log('All categories have been seeded successfully...');
 
- // seed items
+  //seed items with random categories
 await Promise.all(
       mockItem.map(async (item) => {
         const createdItem = await Item.create(item);
