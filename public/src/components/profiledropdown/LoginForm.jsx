@@ -23,7 +23,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className='pt-36'>
       <h2>Login</h2>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
