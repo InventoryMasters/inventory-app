@@ -38,7 +38,6 @@ export default function AllProducts() {
       <section className='w-full banner-container flex flex-col justify-center items-center px-4'>
         <img
           src='https://images.pexels.com/photos/7500307/pexels-photo-7500307.jpeg'
-          alt='Banner Image'
           className='w-full object-cover h-80 rounded-b-xl'
         />
         <div className='relative text-white'>
