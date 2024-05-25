@@ -4,7 +4,9 @@ import Logo from './Logo';
 import user from '../../../assets/icons/user.svg';
 import search from '../../../assets/icons/search.svg';
 
-export default function Navbar() {
+export default function Navbar({isSliderHidden, setIsSliderHidden, toggleFormWrapper}) {
+
+
   return (
     <header className='fixed w-screen'>
       <nav className='font-encode font-medium  h-20 max-w-[100vw]'>
@@ -14,11 +16,13 @@ export default function Navbar() {
             <Link to={'/products'}>PRODUCTS</Link>
             <Link to={'/about'}>ABOUT</Link>
             <Link to={'/profile'}>PROFILE</Link>
-            <Link to={'/login'}>LOGIN</Link>
+ 
           </div>
           <div className='flex gap-8 h-5 pt-2'>
             <img src={search} alt='Search' className='h-[1.1rem]' />
-            <img src={user} alt='User' className='h-[1.1rem]' />
+            <Link to={'/login'} onClick={toggleFormWrapper}>
+              <img src={user} alt='User' className='h-[1.1rem]' />
+            </Link>
           </div>
         </section>
         <Logo />
