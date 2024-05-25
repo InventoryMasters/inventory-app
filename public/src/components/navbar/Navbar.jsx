@@ -13,6 +13,8 @@ export default function Navbar() {
             <Link to='/'>HOME</Link>
             <Link to={'/products'}>PRODUCTS</Link>
             <Link to={'/about'}>ABOUT</Link>
+            <Link to={'/profile'}>PROFILE</Link>
+            <Link to={'/login'}>LOGIN</Link>
           </div>
           <div className='flex gap-8 h-5 pt-2'>
             <img src={search} alt='Search' className='h-[1.1rem]' />
