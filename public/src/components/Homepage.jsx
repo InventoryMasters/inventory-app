@@ -1,35 +1,33 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
-// import leftImage from '../assets/homepage/homepage-left'
-// import rightImage from '../assets/homepage/homepage-right'
+
 
 export default function Homepage() {
   return (
     <>
-      <div className='flex justify-center items-center min-h-screen'>
-        <div className='flex flex-row rounded-lg overflow-hidden w-[70vw] h-[7-vh]'>
-          <div className="w-1/2 h-full p-1">
-            <img
-              src='../assets/homepage/homepage-left.webp'
-              alt='homepage img'
-              className='w-full h-full object-cover rounded-lg' />
-          </div>
-          <div className="flex flex-col w-1/2 h-full p-1">
-            <img
-              src='../assets/homepage-right.webp'
-              alt='homepage img'
-              className='w-full h-full object-cover rounded-lg flex-grow'
-            />
-          </div>
-          <div className='flex justify-center mt-2'>
-            <Link to={'/products'}>
-              <button className="p-4 py-2">
-                Explore Products
-              </button>
+      <main className='w-[80vw] h-[100vh] flex justify-center items-center mx-auto font-encode'>
+        <section className='flex gap-5 relative'>
+          <img
+            src='https://orthodontistbrisbane.net/wp-content/uploads/2019/09/pexels-cottonbro-3402510-684x1024.jpg'
+            className='h-[80vh] rounded-l-3xl'
+          />
+          <h1 className='absolute bottom-44 left-0 translate-x-20 font-encode text-[6rem]  uppercase bg-transparent  font-medium  text-nowrap text-white'>
+            reimagine skincare
+          </h1>
+          <p className='absolute bottom-[10.5rem] left-28 bg-transparent text-nowrap text-lg font-thin text-white'>
+            find the products that are proven to heal and improve your skin
+          </p>
+          <img
+            src='https://images.pexels.com/photos/6543238/pexels-photo-6543238.jpeg'
+            className='h-[80vh] rounded-r-3xl'
+          />
+          <section className='relative'>
+            <Link to={'/products'} className='absolute bottom-20 right-1/2 w-full text-nowrap '>
+              <button className='uppercase -translate-x-[200%] border border-white px-10 py-2 rounded-full text-white font-thin tracking-wide'>Explore Products</button>
             </Link>
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </main>
     </>
-  )
+  );
 }
