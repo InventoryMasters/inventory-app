@@ -16,7 +16,7 @@ export const App = () => {
 
   return (
     <section className='bg-white'>
-      {/* <Navbar /> */}
+      <Navbar />
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/about' element={<About />} />
