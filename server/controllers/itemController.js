@@ -1,6 +1,6 @@
 const { Item, Category } = require('../models/index');
 
-const getAllItems = async (req, res) => {
+const getAllItems = async (req, res, next) => {
     try {
         const items = await Item.findAll({ include: Category });
         if (!items) {
@@ -9,6 +9,7 @@ const getAllItems = async (req, res) => {
             res.status(200).json(items);
         }
     } catch (error) {
+        next(error)
         res.status(500).send(error);
     }
 }
