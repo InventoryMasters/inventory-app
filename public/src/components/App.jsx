@@ -5,6 +5,7 @@ import AllProducts from './products/allProducts/AllProducts';
 import Navbar from './navbar/Navbar';
 import Homepage from './Homepage';
 import SingleProduct from './products/singleProduct/SingleProduct';
+import About from './About';
 
 export const App = () => {
   return (
@@ -12,6 +13,8 @@ export const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<Homepage />} />
+        <Route path='/about' element={<About />} />
+      
         <Route path='/products' element={<AllProducts />} />
         <Route path='/products/:id' element={<SingleProduct/>}/>
       </Routes>
