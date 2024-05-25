@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import apiURL from '../api';
-import React from 'react';
 import AllProducts from './products/allProducts/AllProducts';
 import Navbar from './navbar/Navbar';
 import Homepage from './Homepage';
@@ -10,20 +9,27 @@ import SingleProduct from './products/singleProduct/SingleProduct';
 import About from './About';
 import Login from './profiledropdown/LoginForm';
 import Profile from './profiledropdown/ProfilePage';
+import SliderWrapper from './profiledropdown/sliderWrapper';
 
 export const App = () => {
   const { token } = useUser();
+  const [isSliderHidden, setIsSliderHidden] = useState(true)
+
+    const toggleFormWrapper = () => {
+      console.log(isSliderHidden)
+      setIsSliderHidden(!isSliderHidden)
+    };
 
   return (
     <section className='bg-white'>
-      <Navbar />
+      <Navbar isSliderHidden={isSliderHidden} setIsSliderHidden={setIsSliderHidden} toggleFormWrapper={toggleFormWrapper}/>
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/about' element={<About />} />
 
         <Route
           path='/login'
-          element={token ? <Navigate to='/profile' /> : <Login />}
+          element={token ? <Navigate to='/profile' /> : <SliderWrapper isSliderHidden={isSliderHidden} setIsSliderHidden={setIsSliderHidden}/>}
         />
         <Route
           path='/profile'
