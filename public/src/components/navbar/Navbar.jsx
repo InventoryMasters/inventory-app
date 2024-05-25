@@ -9,7 +9,7 @@ export default function Navbar() {
     <header className='fixed w-screen'>
       <nav className='font-encode font-medium  h-20 max-w-[100vw]'>
         <section className='flex justify-between items-center text-[1.2rem] text-primary-dark-gray h-full px-20'>
-          <div className='flex mx-auto gap-8'>
+          <div className='flex mx-auto gap-8 pl-14'>
             <Link to='/'>HOME</Link>
             <Link to={'/products'}>PRODUCTS</Link>
             <Link to={'/about'}>ABOUT</Link>
