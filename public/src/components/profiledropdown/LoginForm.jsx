@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
+import apiURL from '../../api'
 
 const Login = ({ setFormMode }) => {
   const [email, setEmail] = useState('');
@@ -14,7 +15,7 @@ const Login = ({ setFormMode }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
+      const response = await axios.post(`${apiURL}/auth/login`, { email, password });
       login(response.data.token);
       navigate('/');
     } catch (error) {
@@ -30,9 +31,9 @@ const Login = ({ setFormMode }) => {
       {error && <p>{error}</p>}
       <form
         onSubmit={handleSubmit}
-        className='flex flex-col bg-primary-popup/60 '
+        className='flex flex-col bg-transparent '
       >
-        <div className='flex flex-col bg-primary-popup/60 '>
+        <div className='flex flex-col bg-transparent '>
           <label className='slider-label'>email</label>
           <input
             type='email'
