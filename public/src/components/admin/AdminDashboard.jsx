@@ -25,8 +25,13 @@ export default function AdminDashboard() {
 
   return (
     <section className='pt-28 px-20 text-encode text-primary-dark-gray'>
-    <h1 className='uppercase text-3xl text-center pb-14 font-medium'>admin dashboard</h1>
-      <div className=''>
+      <div className='flex justify-end'>
+        <button className=' border border-primary-dark-gray px-9 py-2 rounded-full font-medium'>ADD NEW PRODUCT</button>
+      </div>
+      <h1 className='uppercase text-3xl text-center pb-14 font-medium'>
+        admin dashboard
+      </h1>
+      <div className='flex flex-col gap-10'>
         {Array.isArray(products) && products.length ? (
           products.map((product) => <AdminProductCard product={product} />)
         ) : (
