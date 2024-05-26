@@ -11,6 +11,7 @@ import Login from './profiledropdown/LoginForm';
 import Profile from './profiledropdown/ProfilePage';
 import SliderWrapper from './profiledropdown/sliderWrapper';
 import AdminDashboard from './admin/AdminDashboard';
+import EditProduct from './admin/EditProduct';
 
 export const App = () => {
   const { token } = useUser();
@@ -47,6 +48,7 @@ export const App = () => {
         <Route path='/products' element={<AllProducts />} />
         <Route path='/products/:id' element={<SingleProduct />} />
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
+        <Route path='/admin/dashboard/edit-product/:id' element={<EditProduct/>}/>
         <Route path='*' element={<h1>404 Not Found</h1>} />
       </Routes>
     </section>
