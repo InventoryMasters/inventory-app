@@ -73,8 +73,8 @@ export default function SignupForm({ setFormMode }) {
         sign up
       </h2>
 
-      <form action='submit' className='flex flex-col bg-primary-popup/60 '>
-        <div className='flex flex-col bg-primary-popup/60'>
+      <form action='submit' className='flex flex-col bg-transparent '>
+        <div className='flex flex-col bg-transparent'>
           <label htmlFor='first-name' className='slider-label'>
             first name
           </label>
