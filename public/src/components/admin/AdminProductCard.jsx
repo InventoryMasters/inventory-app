@@ -3,18 +3,21 @@ import { Link } from 'react-router-dom';
 export default function AdminProductCard({ product }) {
   console.log({ product });
   return (
-    <section className='w-[100dvw]'>
-      <div className=' '>
-        <div key={product.id} className='flex border border-black w-[80dvw]'>
+    <section className='max-w-[100dvw]'>
+      <div className='w-fit'>
+        <div key={product.id} className='flex border border-black w-fit gap-8'>
           <img
             className='w-[250px]'
             src={product.imageUrl}
             alt={product.name}
           />
           <div className='flex flex-col justify-start items-start pt-4 '>
-            <h2 className='uppercase font-semi-bold pb-1 underline underline-offset-2'>
+            <Link
+              to={`/products/${product.id}`}
+              className='uppercase font-semi-bold pb-1 underline underline-offset-2'
+            >
               {product.name}
-            </h2>
+            </Link>
             <p>
               <span className='font-semi-bold pb-1'>ID: </span>
               {product.id}
@@ -32,15 +35,18 @@ export default function AdminProductCard({ product }) {
               {' '}
               <span className='font-semi-bold'>PRICE: </span>${product.price}
             </p>
-          </div>
 
-          <div className='flex items-end'>
-            <button className='border border-primary-dark-gray px-7 py-1 rounded-full'>
-              EDIT PRODUCT
-            </button>
-            <button className='border border-primary-dark-gray px-7 py-1 rounded-full'>
-              DELETE PRODUCT
-            </button>
+            <div className='flex items-end justify-end h-20 gap-5 pt-10'>
+              <Link
+                to={`/admin/dashboard/edit-product/${product.id}`}
+                className='border border-primary-dark-gray px-7 py-1 rounded-full text-nowrap font-medium'
+              >
+                EDIT PRODUCT
+              </Link>
+              <button className='border border-primary-dark-gray px-7 py-1 rounded-full text-nowrap font-medium'>
+                DELETE PRODUCT
+              </button>
+            </div>
           </div>
         </div>
       </div>
