@@ -10,19 +10,24 @@ import About from './About';
 import Login from './profiledropdown/LoginForm';
 import Profile from './profiledropdown/ProfilePage';
 import SliderWrapper from './profiledropdown/sliderWrapper';
+import AdminDashboard from './admin/AdminDashboard';
 
 export const App = () => {
   const { token } = useUser();
-  const [isSliderHidden, setIsSliderHidden] = useState(true)
+  const [isSliderHidden, setIsSliderHidden] = useState(true);
 
-    const toggleFormWrapper = () => {
-      console.log(isSliderHidden)
-      setIsSliderHidden(!isSliderHidden)
-    };
+  const toggleFormWrapper = () => {
+    console.log(isSliderHidden);
+    setIsSliderHidden(!isSliderHidden);
+  };
 
   return (
     <section className='bg-white'>
-      <Navbar isSliderHidden={isSliderHidden} setIsSliderHidden={setIsSliderHidden} toggleFormWrapper={toggleFormWrapper}/>
+      <Navbar
+        isSliderHidden={isSliderHidden}
+        setIsSliderHidden={setIsSliderHidden}
+        toggleFormWrapper={toggleFormWrapper}
+      />
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/about' element={<About />} />
@@ -35,12 +40,13 @@ export const App = () => {
       */}
         {/**
         <Route
-        path='/profile'
+        path='/profile' 
         element={token ? <Profile /> : <Navigate to='/login' />}
         />
       */}
         <Route path='/products' element={<AllProducts />} />
         <Route path='/products/:id' element={<SingleProduct />} />
+        <Route path='/admin/dashboard' element={<AdminDashboard />} />
         <Route path='*' element={<h1>404 Not Found</h1>} />
       </Routes>
     </section>
