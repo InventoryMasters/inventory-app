@@ -24,8 +24,12 @@ export default function SliderWrapper({ isSliderHidden, setIsSliderHidden }) {
         />
       </div>
 
-      <div className='w-[40dvw] bg-primary-popup relative flex h-full flex-col self-end rounded-l-3xl'>
-        {formMode === 'login' ? <Login /> : <SignupForm />}
+      <div className='w-[40dvw] bg-primary-popup/90 relative flex h-full flex-col self-end rounded-l-3xl'>
+        {formMode === 'login' ? (
+          <Login setFormMode={setFormMode} />
+        ) : (
+          <SignupForm setFormMode={setFormMode} />
+        )}
       </div>
     </section>
   );
