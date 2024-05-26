@@ -12,8 +12,9 @@ export default function Navbar({
   setIsSliderHidden,
   toggleFormWrapper,
 }) {
-  const { token } = useUser();
+  const { isAdmin, token } = useUser();
 
+  console.log({token})
   return (
     <header className='fixed w-screen'>
       <nav className='font-encode font-medium  h-20 max-w-[100vw]'>
@@ -22,7 +23,10 @@ export default function Navbar({
             <Link to='/'>HOME</Link>
             <Link to={'/products'}>PRODUCTS</Link>
             <Link to={'/about'}>ABOUT</Link>
+            {/**
             <Link to={'/profile'}>PROFILE</Link>
+          */}
+            {isAdmin && <Link to='/admin/dashboard'>DASHBOARD</Link>}
           </div>
           <div className='flex gap-8 h-5 pt-2'>
             <img src={search} alt='Search' className='h-[1.1rem]' />
