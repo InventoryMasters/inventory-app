@@ -5,7 +5,6 @@ import x from '../../../assets/icons/x.svg';
 
 export default function SliderWrapper({ isSliderHidden, setIsSliderHidden }) {
   const [formMode, setFormMode] = useState('login');
-  console.log('hello wrappeer');
 
   return (
     <section
