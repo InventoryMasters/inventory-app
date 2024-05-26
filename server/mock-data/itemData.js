@@ -6,7 +6,7 @@ const items = [
     price: 72.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/7e/76/3f/1678136488/89a9336130074f59a7790cb2c2fa199a_1920x1920.png',
   },
   {
     name: 'Kiehls Ultra Facial Refillable Moisturizing Cream with Squalane',
@@ -15,7 +15,7 @@ const items = [
     price: 39.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/ba/3d/54/1678222818/02add7671f0b4ed1b481d353a7b51885_1920x1920.png',
   },
   {
     name: 'Glow Recipe Plum Plump Refillable Hyaluronic Acid Moisturizer',
@@ -24,7 +24,7 @@ const items = [
     price: 40.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/60/b4/6a/1678136429/c124abc8b8ee41f499346068c7b36a7f_1920x1920.webp',
   },
   {
     name: 'The Ordinary Natural Moisturizing Factors + HA',
@@ -33,7 +33,7 @@ const items = [
     price: 14.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/d5/e5/7f/1678136479/9ed03683366445e59b36011d9d494dca_1920x1920.png',
   },
   {
     name: 'Dr. Dennis Gross Skincare Advanced Retinol + Ferulic Intense Wrinkle Cream',
@@ -42,7 +42,7 @@ const items = [
     price: 77.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/47/67/57/1704315745/018cd12270e4728e9258604367caff0a_1920x1920.webp',
   },
   {
     name: 'Belif The True Cream Aqua Bomb with Hyaluronic Acid and Nicacinamide',
@@ -51,7 +51,7 @@ const items = [
     price: 38.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/75/28/4f/1678136476/63568c9a31ee429cbc339bf02a2fb17f_1920x1920.png',
   },
   {
     name: 'Fresh Lotus Youth Preserve Line & Texture Smoothing Moisturizer',
@@ -60,7 +60,7 @@ const items = [
     price: 56.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/47/91/16/1678136473/062b18bd014d4f6ba14618fac9fcf98b_1920x1920.png',
   },
   {
     name: 'The INKEY List',
@@ -69,7 +69,7 @@ const items = [
     price: 12.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/8e/4c/c5/1678136487/87118e6fc21a481abe6471d5838d4048_1920x1920.webp',
   },
   {
     name: 'First Aid Beauty Ultra Repair Cream Intense Hydration',
@@ -78,7 +78,7 @@ const items = [
     price: 38.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/62/ab/8e/1679947214/f4ac2662c26142c2a92ba3b39d385d31_1920x1920.png',
   },
   {
     name: 'Farmacy Honey Milk Hydrating Essence with Chamonile + Ceramides',
@@ -87,7 +87,7 @@ const items = [
     price: 34.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/90/2c/86/1678136490/86236b0db7c64c77b60b5fca36318248_1920x1920.webp',
   },
   {
     name: 'The INKEY List Caffeine De-puffing + Dark Circle Eye Cream',
@@ -96,7 +96,7 @@ const items = [
     price: 11.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/28/ca/3c/1683316814/debe0c9ca09e4aa3ae5994dbc2f6f977_1920x1920.webp',
   },
   {
     name: 'Belif Moisturing Eye Bomb with Peptide and Caramide',
@@ -105,7 +105,7 @@ const items = [
     price: 48.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/93/6a/04/1688414430/136b3f8778b74b058b249a4742acea05_1920x1920.png',
   },
   {
     name: 'Dieux Auracle Peptide & Antioxidant Eye Gel',
@@ -114,7 +114,7 @@ const items = [
     price: 44.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/e1/66/c8/1698748516/018b854d4780722396397086cd1031e0_1920x1920.webp',
   },
   {
     name: 'Fresh Lotus Youth Preserve Depuffing Eye Cream',
@@ -123,7 +123,7 @@ const items = [
     price: 47.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/aa/a2/22/1678222815/6c5dd26752014601b7e2dd0592ad7a04_1920x1920.webp',
   },
   {
     name: 'Shiseido Benefiance Wrinkle Smoothing Eye Cream',
@@ -132,7 +132,7 @@ const items = [
     price: 65.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/89/e7/55/1678222825/234f011afa2d4c48934afefa7b238238_1920x1920.png',
   },
   {
     name: 'Olenhenriksen Banana Bright+ Vitamin C Brightening Eye Cream',
@@ -141,7 +141,7 @@ const items = [
     price: 44.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/a4/d2/9c/1707339633/018d855f522b71d783a29dd94e3d8de2_1920x1920.png',
   },
   {
     name: 'Clarins Double Serum Eye Firming & Hydrating Anti-Aging Concentrate',
@@ -150,7 +150,7 @@ const items = [
     price: 83.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/c5/92/0c/1678136430/518aee7cbfa548819d28bfad654a4005_1920x1920.webp',
   },
   {
     name: 'Glow Recipe Guava Vitamin C Bright-Eye Gel Cream',
@@ -159,7 +159,7 @@ const items = [
     price: 38.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/54/39/4e/1678136483/87ef44db043349d591d5bc3c4aaa994a_1920x1920.webp',
   },
   {
     name: 'The Ordinary Multi-Peptide Eye Serum',
@@ -168,7 +168,7 @@ const items = [
     price: 25.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/95/e1/10/1678136434/cad770b68e17430ea6372a5e9c5a604f_1920x1920.png',
   },
   {
     name: 'Naturally Serious Zero Baggage Anti-Dark Circle Eye Cream',
@@ -339,7 +339,7 @@ const items = [
     price: 12.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/d5/e5/7f/1678136479/9ed03683366445e59b36011d9d494dca_1920x1920.png',
   },
   {
     name: 'iNNbeauty Project Pimple Paste Overnight Blemish Spot Treatment',
@@ -348,7 +348,7 @@ const items = [
     price: 18.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/d5/e5/7f/1678136479/9ed03683366445e59b36011d9d494dca_1920x1920.png',
   },
   {
     name: 'innisfree Bija Salicylic Spot Gel Serum',
@@ -357,7 +357,7 @@ const items = [
     price: 18.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/7e/76/3f/1678136488/89a9336130074f59a7790cb2c2fa199a_1920x1920.png',
   },
 ];
 

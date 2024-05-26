@@ -3,8 +3,17 @@ import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import user from '../../../assets/icons/user.svg';
 import search from '../../../assets/icons/search.svg';
+import { useUser } from '../../context/UserContext';
+import ProfilePage from '../profiledropdown/ProfilePage';
+import SliderWrapper from '../profiledropdown/sliderWrapper';
 
-export default function Navbar() {
+export default function Navbar({
+  isSliderHidden,
+  setIsSliderHidden,
+  toggleFormWrapper,
+}) {
+  const { token } = useUser();
+
   return (
     <header className='fixed w-screen'>
       <nav className='font-encode font-medium  h-20 max-w-[100vw]'>
@@ -14,11 +23,18 @@ export default function Navbar() {
             <Link to={'/products'}>PRODUCTS</Link>
             <Link to={'/about'}>ABOUT</Link>
             <Link to={'/profile'}>PROFILE</Link>
-            <Link to={'/login'}>LOGIN</Link>
           </div>
           <div className='flex gap-8 h-5 pt-2'>
             <img src={search} alt='Search' className='h-[1.1rem]' />
-            <img src={user} alt='User' className='h-[1.1rem]' />
+            {/**<Link to={'/login'} onClick={toggleFormWrapper}>*/}
+            <img
+              src={user}
+              alt='User'
+              className='h-[1.1rem]'
+              onClick={() => setIsSliderHidden(!isSliderHidden)}
+            />
+            {!isSliderHidden && (token ? <ProfilePage /> : <SliderWrapper toggleFormWrapper={toggleFormWrapper}/>)}
+            {/**  </Link>*/}
           </div>
         </section>
         <Logo />

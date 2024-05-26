@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
+    "@hookform/resolvers": "^3.4.2",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
@@ -21,13 +22,16 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "1.10.0",
     "nodemon": "^2.0.19",
+    "open": "^10.1.0",
     "parcel": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.5",
     "react-router-dom": "^6.23.1",
     "react-test-renderer": "^18.2.0",
     "sequelize": "^6.23.2",
-    "sqlite3": "^5.1.1"
+    "sqlite3": "^5.1.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@testing-library/react": "^12.0.0",

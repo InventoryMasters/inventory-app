@@ -80,7 +80,7 @@ export default function About() {
         </p>
       </section>
 
-      <section className='flex bg-primary-popup/20 justify-center items-center gap-20 w-full py-20 pt-28'>
+      <section className='flex bg-primary-popup/60 justify-center items-center gap-20 w-full py-20 pt-28'>
         <div className='max-w-[80vw] flex flex-row-reverse bg-transparent px-36 gap-16'>
           <div className='w-9/12 aspect-square'>
             <img src='https://www.teamdrjoseph.com/thumbnail/ba/3d/54/1678222818/02add7671f0b4ed1b481d353a7b51885_1920x1920.png' />

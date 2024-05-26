@@ -1,51 +1,75 @@
 // Login.js
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useUser } from "../../context/UserContext";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
+import apiURL from '../../api'
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+const Login = ({ setFormMode }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const { login } = useUser();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/auth/login", { email, password });
+      const response = await axios.post(`${apiURL}/auth/login`, { email, password });
       login(response.data.token);
-      navigate("/");
+      navigate('/');
     } catch (error) {
-      setError("Invalid credentials");
+      setError('Invalid credentials');
     }
   };
 
   return (
-    <div className='pt-36'>
-      <h2>Login</h2>
+    <div className='w-96 h-96 flex justify-start flex-col absolute top-20 right-40 bg-transparent font-encode text-primary-dark-gray'>
+      <h2 className='text-center text-[3rem] bg-transparent pb-20 font-semi-bold tracking-wide text-primary-dark-gray/85'>
+        login
+      </h2>
       {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+      <form
+        onSubmit={handleSubmit}
+        className='flex flex-col bg-transparent '
+      >
+        <div className='flex flex-col bg-transparent '>
+          <label className='slider-label'>email</label>
           <input
-            type="email"
+            type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className='slider-input'
           />
-        </div>
-        <div>
-          <label>Password:</label>
+
+          <label className='slider-label'>password</label>
           <input
-            type="password"
+            type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className='slider-input'
           />
         </div>
-        <button type="submit">Login</button>
+        <p className='bg-transparent text-center -mt-8 text-sm tracking-wide'>
+          don't have an account? sign up
+          <span
+            onClick={async () => setFormMode('signup')}
+            className='bg-transparent font-semi-bold cursor-pointer'
+          >
+            {' '}
+            here
+          </span>{' '}
+          instead
+        </p>
+
+        <button
+          type='submit'
+          className='uppercase w-full h-14 bg-white rounded-full font-light mt-10 text-lg'
+        >
+          Login
+        </button>
       </form>
     </div>
   );
