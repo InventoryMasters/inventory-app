@@ -27,14 +27,18 @@ export const App = () => {
         <Route path='/' element={<Homepage />} />
         <Route path='/about' element={<About />} />
 
+        {/**
         <Route
-          path='/login'
-          element={token ? <Navigate to='/profile' /> : <SliderWrapper isSliderHidden={isSliderHidden} setIsSliderHidden={setIsSliderHidden}/>}
+        path='/login'
+        element={token ? <Navigate to='/profile' /> : <SliderWrapper isSliderHidden={isSliderHidden} setIsSliderHidden={setIsSliderHidden}/>}
         />
+      */}
+        {/**
         <Route
-          path='/profile'
-          element={token ? <Profile /> : <Navigate to='/login' />}
+        path='/profile'
+        element={token ? <Profile /> : <Navigate to='/login' />}
         />
+      */}
         <Route path='/products' element={<AllProducts />} />
         <Route path='/products/:id' element={<SingleProduct />} />
         <Route path='*' element={<h1>404 Not Found</h1>} />
