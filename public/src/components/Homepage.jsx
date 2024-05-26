@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 export default function Homepage() {
   return (
     <>
-      <main className='w-[80vw] h-[100vh] flex justify-center items-center mx-auto font-encode'>
+      <main className='w-[80vw] h-[100vh] flex justify-center items-center mx-auto font-encode -z-[100]'>
         <section className='flex gap-5 relative'>
           <img
             src='https://orthodontistbrisbane.net/wp-content/uploads/2019/09/pexels-cottonbro-3402510-684x1024.jpg'
-            className='h-[80vh] rounded-l-3xl'
+            className='h-[80vh] rounded-l-3xl '
           />
           <h1 className='absolute bottom-44 left-0 translate-x-20 font-encode text-[6rem]  uppercase bg-transparent  font-medium  text-nowrap text-white'>
             reimagine skincare
