@@ -69,11 +69,8 @@ export default function CreateProduct() {
 
   const submitCreateProduct = async (e) => {
     e.preventDefault();
-    console.log('hello from submit');
     try {
-      console.log('attempting submit......');
       const prod = await axios.post(`${apiURL}/admin/items`, product);
-      console.log('submitting successful......');
       console.log({ prod });
       navigate('/admin/dashboard');
     } catch (err) {
@@ -83,81 +80,91 @@ export default function CreateProduct() {
   };
 
   return (
-    <section className='pt-96'>
+    <section className=''>
       <section className='pt-28 font-encode text-3xl text-center font-semi-bold text-primary-dark-gray px-20'>
         <h1>ADD NEW PRODUCT</h1>
 
         <div className='flex justify-center'>
           <form
             onSubmit={submitCreateProduct}
-            className='text-sm font-light border border-black  w-[40vw] flex flex-col text-start'
+            className='text-sm font-light pt-10 w-[40vw] flex flex-col text-start'
           >
-            <label htmlFor='name'>name</label>
+            <label htmlFor='name' className='pt-5'>
+              name
+            </label>
             <input
               type='text'
               id='name'
               name='name'
               value={product.name}
               onChange={handleChange}
-              className='border border-black w-[80%] text-black'
+              className='border border-black w-[80%] text-black py-2 rounded-md px-3'
             />
             {/* Error handling for name */}
             {product.name.length < 3 && (
               <p>Product name must be at least 3 characters long</p>
             )}
 
-            <label htmlFor='description'>description</label>
+            <label htmlFor='description' className='pt-5'>
+              description
+            </label>
             <textarea
               id='description'
               name='description'
               value={product.description}
               onChange={handleChange}
-              className='border border-black w-[80%]'
+              className='border border-black w-[80%] h-20 text-black py-2 rounded-md px-3'
             />
             {/* Error handling for description */}
             {product.description.length < 30 && (
               <p>Product description must be at least 30 characters long</p>
             )}
 
-            <label htmlFor='price'>price</label>
+            <label htmlFor='price' className='pt-5'>
+              price
+            </label>
             <input
               type='number'
               id='price'
               name='price'
               value={product.price}
               onChange={handleChange}
-              className='border border-black'
+              className='border border-black w-[80%] text-black py-2 rounded-md px-3'
             />
             {/* Error handling for price */}
             {product.price < 5 && <p>Price must be greater than 5</p>}
 
-            <label htmlFor='qty'>qty</label>
+            <label htmlFor='qty' className='pt-5'>
+              qty
+            </label>
             <input
               type='number'
               id='qty'
               name='qty'
               value={product.qty}
               onChange={handleChange}
-              className='border border-black'
+              className='border border-black w-[80%] text-black py-2 rounded-md px-3'
             />
             {/* Error handling for qty */}
             {product.qty < 1 && <p>Qty must be greater than 5</p>}
 
-            <label htmlFor='imageUrl'>Image URL</label>
+            <label htmlFor='imageUrl' className='pt-5'>
+              Image URL
+            </label>
             <input
               type='text'
               id='imageUrl'
               name='imageUrl'
               value={product.imageUrl}
               onChange={handleChange}
-              className='border border-black'
+              className='border border-black w-[80%] text-black py-2 rounded-md px-3'
             />
             {/* Error handling for image URL */}
             {!/^https?:\/\/.+/.test(product.imageUrl) && (
               <p>Should be a valid image URL</p>
             )}
 
-            <h3>select category: </h3>
+            <h3 className='pt-5'>select category: </h3>
             <CreatableSelect
               closeMenuOnSelect={true}
               onChange={handleCategoryChange}
@@ -166,9 +173,13 @@ export default function CreateProduct() {
                 value: category.name,
                 label: category.name,
               }))}
+              className='w-[80%]'
             />
 
-            <button type='submit' className='border border-black'>
+            <button
+              type='submit'
+              className='border border-black py-2 rounded-full text-md mt-10 font-lg w-[80%]'
+            >
               SAVE PRODUCT
             </button>
           </form>
