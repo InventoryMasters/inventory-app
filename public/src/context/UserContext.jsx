@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-
+// import jwt_decode from 'jwt-decode';
+const jwt_decode = require('jwt-decode');
 const UserContext = createContext();
 
 export const useUser = () => useContext(UserContext);
