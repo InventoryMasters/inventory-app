@@ -43,32 +43,32 @@ const User = sequelize.define('user', {
   passwordHash: {
     type: DataTypes.STRING,
     allowNull: false,
-    validate: {
-      len: {
-        args: [8, 24],
-        msg: 'Password must be between 8 and 24 characters!',
-      },
-      containsSpecialChar(value) {
-        if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
-          throw new Error('Password must have at least one special character!');
-        }
-      },
-      containsUppercase(value) {
-        if (!/[A-Z]/.test(value)) {
-          throw new Error('Password must have at least one uppercase letter!');
-        }
-      },
-      containsLowercase(value) {
-        if (!/[a-z]/.test(value)) {
-          throw new Error('Password must have at least one lowercase letter!');
-        }
-      },
-      containsNumber(value) {
-        if (!/\d/.test(value)) {
-          throw new Error('Password must have at least one number!');
-        }
-      },
-    },
+    // validate: {
+    //   len: {
+    //     args: [8, 24],
+    //     msg: 'Password must be between 8 and 24 characters!',
+    //   },
+    //   containsSpecialChar(value) {
+    //     if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+    //       throw new Error('Password must have at least one special character!');
+    //     }
+    //   },
+    //   containsUppercase(value) {
+    //     if (!/[A-Z]/.test(value)) {
+    //       throw new Error('Password must have at least one uppercase letter!');
+    //     }
+    //   },
+    //   containsLowercase(value) {
+    //     if (!/[a-z]/.test(value)) {
+    //       throw new Error('Password must have at least one lowercase letter!');
+    //     }
+    //   },
+    //   containsNumber(value) {
+    //     if (!/\d/.test(value)) {
+    //       throw new Error('Password must have at least one number!');
+    //     }
+    //   },
+    // },
   },
   role: {
     type: DataTypes.ENUM('USER', 'ADMIN'),

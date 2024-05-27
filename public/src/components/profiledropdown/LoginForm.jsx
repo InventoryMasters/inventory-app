@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import apiURL from '../../api'
 
-const Login = ({ setFormMode }) => {
+const Login = ({ setFormMode, toggleFormWrapper }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -17,7 +17,7 @@ const Login = ({ setFormMode }) => {
     try {
       const response = await axios.post(`${apiURL}/auth/login`, { email, password });
       login(response.data.token);
-      navigate('/');
+      toggleFormWrapper()
     } catch (error) {
       setError('Invalid credentials');
     }
