@@ -37,8 +37,14 @@ export const UserProvider = ({ children }) => {
 
   const isAdmin = () => {
     if (token) {
-      const decodedToken = jwt_decode(token);
-      return decodedToken.role === 'ADMIN';
+      try {
+        const decodedToken = jwt_decode(token);
+        console.log({decodedToken})
+        return decodedToken.role === 'ADMIN';
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        return false; 
+      }
     }
     return false;
   };
