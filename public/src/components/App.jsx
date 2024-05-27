@@ -7,9 +7,7 @@ import Navbar from './navbar/Navbar';
 import Homepage from './Homepage';
 import SingleProduct from './products/singleProduct/SingleProduct';
 import About from './About';
-import Login from './profiledropdown/LoginForm';
-import Profile from '../components/profiledropdown/userProfile/ProfilePage'
-import SliderWrapper from './profiledropdown/sliderWrapper';
+
 import AdminDashboard from './admin/AdminDashboard';
 import EditProduct from './admin/EditProduct';
 import CreateProduct from './admin/CreateProduct';
