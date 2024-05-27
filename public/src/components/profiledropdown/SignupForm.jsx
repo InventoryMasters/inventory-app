@@ -1,41 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import apiURL from '../../api'
+import apiURL from '../../api';
+import axios from 'axios';
+import { useUser } from '../../context/UserContext';
 
-export default function SignupForm({ setFormMode }) {
-  const zodSignin = () =>
-    z
-      .object({
-        firstName: z
-          .string()
-          .min(2, { message: 'First name must be at least 2 characters long' }),
-        lastName: z
-          .string()
-          .min(2, { message: 'Last name must be at least 2 characters long' }),
-        email: z
-          .string()
-          .email({ message: 'Please enter a valid e-mail address' }),
-        password: z
-          .string()
-          .min(8, { message: 'Password must contain 8-24 characters' })
-          .max(24, { message: 'Password must contain 8-24 characters' }),
-        confirmPassword: z
-          .string()
-          .min(8, { message: 'Password must contain 8-24 characters' })
-          .max(24, { message: 'Password must contain 8-24 characters' }),
-      })
-      .strict()
-      .refine(
-        ({ password, confirmPassword }) => {
-          return password === confirmPassword;
-        },
-        {
-          message: 'Password fiels do not match',
-          path: ['confirmPassword'],
-        }
-      );
+export default function SignupForm({ setFormMode, toggleFormWrapper }) {
+  const { signup } = useUser();
+  const zodSignin = z
+    .object({
+      firstName: z
+        .string()
+        .min(2, { message: 'First name must be at least 2 characters long' }),
+      lastName: z
+        .string()
+        .min(2, { message: 'Last name must be at least 2 characters long' }),
+      email: z
+        .string()
+        .email({ message: 'Please enter a valid e-mail address' }),
+      password: z
+        .string()
+        .min(8, { message: 'Password must contain 8-24 characters' })
+        .max(24, { message: 'Password must contain 8-24 characters' }),
+      confirmPassword: z
+        .string()
+        .min(8, { message: 'Password must contain 8-24 characters' })
+        .max(24, { message: 'Password must contain 8-24 characters' }),
+    })
+    .strict()
+    .refine(
+      ({ password, confirmPassword }) => {
+        return password === confirmPassword;
+      },
+      {
+        message: 'Password fiels do not match',
+        path: ['confirmPassword'],
+      }
+    );
 
   const {
     register,
@@ -54,16 +56,18 @@ export default function SignupForm({ setFormMode }) {
       confirmPassword: '',
     },
   });
+  const submitData = async (data) => {
+    const { confirmPassword, ...formData } = data;
+    formData.passwordHash = formData.password;
+    delete formData.password;
 
-  const sumbitData = async () => {
     try {
-      const response = await axios.post(`${apiURL}/auth/signup`, {
-       firstName, lastName, email, password
-      });
-
-
+      const response = await axios.post(`${apiURL}/auth/signup`, formData);
+      console.log('Signup successful:', response.data);
+      signup(response.data.token);
+      toggleFormWrapper();
     } catch (err) {
-      throw err;
+      console.error('Error signing user up', err);
     }
   };
 
@@ -73,7 +77,11 @@ export default function SignupForm({ setFormMode }) {
         sign up
       </h2>
 
-      <form action='submit' className='flex flex-col bg-transparent '>
+      <form
+        action='submit'
+        onSubmit={handleSubmit(submitData)}
+        className='flex flex-col bg-transparent '
+      >
         <div className='flex flex-col bg-transparent'>
           <label htmlFor='first-name' className='slider-label'>
             first name
