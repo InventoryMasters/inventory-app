@@ -9,7 +9,7 @@ import SingleProduct from './products/singleProduct/SingleProduct';
 import About from './About';
 import Login from './profiledropdown/LoginForm';
 import Profile from './profiledropdown/ProfilePage';
-import SliderWrapper from './profiledropdown/sliderWrapper';
+import SliderWrapper from './profiledropdown/SliderWrapper';
 import AdminDashboard from './admin/AdminDashboard';
 import EditProduct from './admin/EditProduct';
 import CreateProduct from './admin/CreateProduct';
