@@ -27,7 +27,7 @@ export default function SliderWrapper({ isSliderHidden, setIsSliderHidden, toggl
         {formMode === 'login' ? (
           <Login setFormMode={setFormMode} />
         ) : (
-          <SignupForm setFormMode={setFormMode} />
+          <SignupForm setFormMode={setFormMode} toggleFormWrapper={toggleFormWrapper} />
         )}
       </div>
     </section>
