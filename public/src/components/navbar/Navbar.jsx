@@ -4,7 +4,7 @@ import Logo from './Logo';
 import user from '../../../assets/icons/user.svg';
 import search from '../../../assets/icons/search.svg';
 import { useUser } from '../../context/UserContext';
-import ProfilePage from '../profiledropdown/ProfilePage';
+import ProfilePage from '../profiledropdown/userProfile/ProfilePage';
 import SliderWrapper from '../profiledropdown/sliderWrapper';
 
 export default function Navbar({
@@ -36,12 +36,9 @@ export default function Navbar({
               className='h-[1.1rem]'
               onClick={() => setIsSliderHidden(!isSliderHidden)}
             />
-            {!isSliderHidden &&
-              (token ? (
-                <ProfilePage />
-              ) : (
-                <SliderWrapper toggleFormWrapper={toggleFormWrapper} />
-              ))}
+            {!isSliderHidden && (
+              <SliderWrapper toggleFormWrapper={toggleFormWrapper} />
+            )}
           </div>
         </section>
         <Logo />
