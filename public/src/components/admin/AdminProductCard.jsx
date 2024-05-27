@@ -1,8 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import apiURL from '../../api';
 
-export default function AdminProductCard({ product }) {
-  console.log({ product });
+export default function AdminProductCard({ product, onDelete }) {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleDeleteProduct = async () => {
+    try {
+      await axios.delete(`${apiURL}/admin/items/${product.id}`);
+      console.log('Product deleted successfully');
+      onDelete(product.id); 
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
+  const handleDeleteButtonClick = () => {
+    setShowConfirmation(true);
+  };
+
+  useEffect(() => {
+    if (showConfirmation) {
+      if (window.confirm('Are you sure you want to delete this product?')) {
+        handleDeleteProduct();
+      } else {
+        setShowConfirmation(false);
+      }
+    }
+  }, [showConfirmation]);
+
   return (
     <section className='max-w-[100dvw]'>
       <div className='w-fit'>
@@ -44,7 +72,10 @@ export default function AdminProductCard({ product }) {
               >
                 EDIT PRODUCT
               </Link>
-              <button className='border border-primary-dark-gray px-7 py-1 rounded-full text-nowrap font-medium'>
+              <button
+                onClick={handleDeleteButtonClick}
+                className='border border-primary-dark-gray px-7 py-1 rounded-full text-nowrap font-medium'
+              >
                 DELETE PRODUCT
               </button>
             </div>
