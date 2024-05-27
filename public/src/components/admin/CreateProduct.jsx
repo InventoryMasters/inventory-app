@@ -80,14 +80,14 @@ export default function CreateProduct() {
   };
 
   return (
-    <section className=''>
+    <section className='flex justify-center'>
       <section className='pt-28 font-encode text-3xl text-center font-semi-bold text-primary-dark-gray px-20'>
-        <h1>ADD NEW PRODUCT</h1>
+        <h1 className='text-center  pr-28'>ADD NEW PRODUCT</h1>
 
         <div className='flex justify-center'>
           <form
             onSubmit={submitCreateProduct}
-            className='text-sm font-light pt-10 w-[40vw] flex flex-col text-start'
+            className='text-sm font-light pt-10 w-[500px] flex flex-col text-start'
           >
             <label htmlFor='name' className='pt-5'>
               name
@@ -100,7 +100,7 @@ export default function CreateProduct() {
               onChange={handleChange}
               className='border border-black w-[80%] text-black py-2 rounded-md px-3'
             />
-            {/* Error handling for name */}
+
             {product.name.length < 3 && (
               <p>Product name must be at least 3 characters long</p>
             )}
@@ -115,7 +115,7 @@ export default function CreateProduct() {
               onChange={handleChange}
               className='border border-black w-[80%] h-20 text-black py-2 rounded-md px-3'
             />
-            {/* Error handling for description */}
+
             {product.description.length < 30 && (
               <p>Product description must be at least 30 characters long</p>
             )}
@@ -131,7 +131,7 @@ export default function CreateProduct() {
               onChange={handleChange}
               className='border border-black w-[80%] text-black py-2 rounded-md px-3'
             />
-            {/* Error handling for price */}
+
             {product.price < 5 && <p>Price must be greater than 5</p>}
 
             <label htmlFor='qty' className='pt-5'>
@@ -145,7 +145,7 @@ export default function CreateProduct() {
               onChange={handleChange}
               className='border border-black w-[80%] text-black py-2 rounded-md px-3'
             />
-            {/* Error handling for qty */}
+
             {product.qty < 1 && <p>Qty must be greater than 5</p>}
 
             <label htmlFor='imageUrl' className='pt-5'>
@@ -178,7 +178,7 @@ export default function CreateProduct() {
 
             <button
               type='submit'
-              className='border border-black py-2 rounded-full text-md mt-10 font-lg w-[80%]'
+              className='border border-black py-2 rounded-full text-md mt-10 font-lg w-[80%] font-medium'
             >
               SAVE PRODUCT
             </button>
