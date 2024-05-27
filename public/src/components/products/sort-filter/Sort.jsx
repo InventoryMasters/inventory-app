@@ -1,7 +1,7 @@
 import React from 'react'
 import sortFilter from '../../../../assets/icons/sort-filter.svg'
 
-export default function SortFilter({ products, setProducts }) {
+export default function Sort({ products, setProducts }) {
 
   const applySort = (products, value) => {
     let sortedProducts;

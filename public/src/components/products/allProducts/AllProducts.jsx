@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 import apiURL from '../../../api';
-import SortFilter from '../sort-filter/SortFilter';
+import Filter from '../sort-filter/Filter';
+import Sort from '../sort-filter/Sort';
 import { Link } from 'react-router-dom';
 
 export default function AllProducts() {
@@ -51,12 +52,13 @@ export default function AllProducts() {
           <h1 className=' mt-10 uppercase font-medium text-lg text-center'>
             All Products
           </h1>
-          <SortFilter products={products} setProducts={setProducts}/>
+          <Filter products={products} setProducts={setProducts}/>
+          <Sort products={products} setProducts={setProducts}/>
         </div>
         <div className='grid grid-cols-3 gap-12 gap-y-12 mt-10 self-center'>
           {Array.isArray(products) && products.length ? (
             paginatedProducts.map((product) => (
-              <Link to={`/products/${product.id}`}>
+              <Link to={`/products/${product.id}`} key={product.id}>
                 <div
                   key={product.id}
                   className='max-w-[350px] flex flex-col items-center text-center'
