@@ -177,7 +177,7 @@ const items = [
     price: 26.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/8e/a8/92/1678136477/f9034b37c96446748c370e5db41422af_1920x1920.webp',
   },
   {
     name: 'Youth To The People SuperFood Gentle Antioxidant Refillable Cleanser',
@@ -186,7 +186,7 @@ const items = [
     price: 39.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/7e/76/3f/1678136488/89a9336130074f59a7790cb2c2fa199a_1920x1920.webp',
   },
   {
     name: 'Glow Recipe Avocado Ceramide Moisture Barrier Cleanser',
@@ -195,7 +195,7 @@ const items = [
     price: 28.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/a4/d2/9c/1707339633/018d855f522b71d783a29dd94e3d8de2_1920x1920.webp',
   },
   {
     name: 'Farmacy Green Clean Makeup Removing CLeansing Balm',
@@ -204,7 +204,7 @@ const items = [
     price: 36.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/89/e7/55/1678222825/234f011afa2d4c48934afefa7b238238_1920x1920.webp',
   },
   {
     name: 'Peter Tomas Roth Anti-Aging Cleansing Get',
@@ -213,7 +213,7 @@ const items = [
     price: 39.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/c2/4c/2b/1678222822/28dbcace11184c67bf25f538a167e137_1920x1920.webp',
   },
   {
     name: 'Skinfix Barrier+ Foaming Oil Hydrating Cleanser',
@@ -222,7 +222,7 @@ const items = [
     price: 30.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/ba/3d/54/1678222818/02add7671f0b4ed1b481d353a7b51885_1920x1920.webp',
   },
   {
     name: 'Tatcha The Rice Wash Skin-Softening Cleanser',
@@ -231,7 +231,7 @@ const items = [
     price: 40.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/aa/a2/22/1678222815/6c5dd26752014601b7e2dd0592ad7a04_1920x1920.webp',
   },
   {
     name: 'Fenty Skin Total Cleansr Remove-It-All Cleanser with Barbados Cherry',
@@ -240,7 +240,7 @@ const items = [
     price: 30.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/c5/92/0c/1678136430/518aee7cbfa548819d28bfad654a4005_1920x1920.webp',
   },
   {
     name: 'Drunk Elephant Beste No. 9 Jelly Cleanser',
@@ -249,7 +249,7 @@ const items = [
     price: 34.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/75/28/4f/1678136476/63568c9a31ee429cbc339bf02a2fb17f_1920x1920.webp',
   },
   {
     name: 'Dermalogica Precleanse Oil',
@@ -258,7 +258,7 @@ const items = [
     price: 49.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/8e/4c/c5/1678136487/87118e6fc21a481abe6471d5838d4048_1920x1920.webp',
   },
   {
     name: 'Mara Chai + Moringa Algae Ensyme Cleansing Oil',
@@ -267,7 +267,7 @@ const items = [
     price: 58.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/47/91/16/1678136473/062b18bd014d4f6ba14618fac9fcf98b_1920x1920.webp',
   },
   {
     name: 'The Ordinary Hyaluranic Acid 2% + B5 Hydrating Serum',
@@ -276,7 +276,7 @@ const items = [
     price: 9.9,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/75/28/4f/1678136476/63568c9a31ee429cbc339bf02a2fb17f_1920x1920.webp',
   },
   {
     name: 'Glow Recipe Watermelon Glow Niacinamide Dew Drops Serum ',
@@ -285,7 +285,7 @@ const items = [
     price: 35.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/8e/4c/c5/1678136487/87118e6fc21a481abe6471d5838d4048_1920x1920.webp',
   },
   {
     name: 'Topicals Mini Faded Serum for Darker Spots & Discoloration',
@@ -294,7 +294,7 @@ const items = [
     price: 18.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/a7/b6/80/1678136454/eeb1ddcab0b74f65ac6cd9d2351152fb_1920x1920.webp',
   },
   {
     name: 'Paulas Choice C15 Vitamin C Super Booster',
@@ -303,7 +303,7 @@ const items = [
     price: 55.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/62/ab/8e/1679947214/f4ac2662c26142c2a92ba3b39d385d31_1920x1920.webp',
   },
   {
     name: 'Kosas Plump + Juicy Vegan Collagen + Probiotic Spray-On Serum',
@@ -312,7 +312,7 @@ const items = [
     price: 48.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/60/b4/6a/1678136429/c124abc8b8ee41f499346068c7b36a7f_1920x1920.webp',
   },
   {
     name: 'Laneige Water Bank Hyaluronic Serum',
@@ -321,7 +321,7 @@ const items = [
     price: 45.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/54/39/4e/1678136483/87ef44db043349d591d5bc3c4aaa994a_1920x1920.webp',
   },
   {
     name: 'Estee Lauder Advanced Night Repair Multi-Recovery Complex Serum with Hyaluronic Acid',
@@ -330,7 +330,7 @@ const items = [
     price: 125.0,
     qty: 25,
     imageUrl:
-      'https://lelabo.ips.photos/lelabo-java/images/skus/J33T010000__PRODUCT_01--IMG_1200--SANTAL33-527100674.jpg',
+      'https://www.teamdrjoseph.com/thumbnail/76/16/ec/1678136473/f3199b3df4d34a4aaf0a8650a29c2a95_1920x1920.webp',
   },
   {
     name: 'Tower 28 Beauty SOS Daily Rescure Facial Spray',

@@ -9,20 +9,27 @@ import SingleProduct from './products/singleProduct/SingleProduct';
 import About from './About';
 import Login from './profiledropdown/LoginForm';
 import Profile from './profiledropdown/ProfilePage';
-import SliderWrapper from './profiledropdown/sliderWrapper';
+import SliderWrapper from './profiledropdown/SliderWrapper';
+import AdminDashboard from './admin/AdminDashboard';
+import EditProduct from './admin/EditProduct';
+import CreateProduct from './admin/CreateProduct';
 
 export const App = () => {
   const { token } = useUser();
-  const [isSliderHidden, setIsSliderHidden] = useState(true)
+  const [isSliderHidden, setIsSliderHidden] = useState(true);
 
-    const toggleFormWrapper = () => {
-      console.log(isSliderHidden)
-      setIsSliderHidden(!isSliderHidden)
-    };
+  const toggleFormWrapper = () => {
+    console.log(isSliderHidden);
+    setIsSliderHidden(!isSliderHidden);
+  };
 
   return (
     <section className='bg-white'>
-      <Navbar isSliderHidden={isSliderHidden} setIsSliderHidden={setIsSliderHidden} toggleFormWrapper={toggleFormWrapper}/>
+      <Navbar
+        isSliderHidden={isSliderHidden}
+        setIsSliderHidden={setIsSliderHidden}
+        toggleFormWrapper={toggleFormWrapper}
+      />
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/about' element={<About />} />
@@ -35,12 +42,21 @@ export const App = () => {
       */}
         {/**
         <Route
-        path='/profile'
+        path='/profile' 
         element={token ? <Profile /> : <Navigate to='/login' />}
         />
       */}
         <Route path='/products' element={<AllProducts />} />
         <Route path='/products/:id' element={<SingleProduct />} />
+        <Route path='/admin/dashboard' element={<AdminDashboard />} />
+        <Route
+          path='/admin/dashboard/edit-product/:id'
+          element={<EditProduct />}
+        />
+        <Route
+          path='/admin/dashboard/new-product'
+          element={<CreateProduct />}
+        />
         <Route path='*' element={<h1>404 Not Found</h1>} />
       </Routes>
     </section>
