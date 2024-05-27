@@ -1,8 +1,17 @@
 const { Item, Category } = require('../models/index');
+const { Op } = require('sequelize');
 
 const getAllItems = async (req, res, next) => {
     try {
-        const items = await Item.findAll({ include: Category });
+        const { name } = req.query;
+        const options = {};
+
+        if (name) {
+            options.where = { name: { [Op.like]: `%${name}%` } };
+        }
+        
+        const items = await Item.findAll(options);
+        // const items = await Item.findAll({ include: Category });
         if (!items) {
             res.status(404).send("Error fetching items: Items not found");
         } else {

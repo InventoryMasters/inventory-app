@@ -5,14 +5,25 @@ import user from '../../../assets/icons/user.svg';
 import search from '../../../assets/icons/search.svg';
 import { useUser } from '../../context/UserContext';
 import ProfilePage from '../profiledropdown/ProfilePage';
-import SliderWrapper from '../profiledropdown/SliderWrapper';
+import SliderWrapper from '../profiledropdown/sliderWrapper';
+import SearchBar from '../products/search-bar/SearchBar';
+import apiURL from '../../api';
+
 
 export default function Navbar({
   isSliderHidden,
   setIsSliderHidden,
   toggleFormWrapper,
 }) {
-  const { isAdmin, token } = useUser();
+
+  const { token, isAdmin } = useUser();
+  const handleSearch = (searchQuery) => {
+    const urlSearchParams = new URLSearchParams({ name: searchQuery });
+    const queryString = urlSearchParams.toString();
+    const url = `http://localhost:1234/products?${queryString}`;
+    window.location.href = url;
+  }
+
 
   console.log({token})
   return (
@@ -30,6 +41,7 @@ export default function Navbar({
           </div>
           <div className='flex gap-8 h-5 pt-2'>
             <img src={search} alt='Search' className='h-[1.1rem]' />
+            <SearchBar onSearch={handleSearch} />
             {/**<Link to={'/login'} onClick={toggleFormWrapper}>*/}
             <img
               src={user}
