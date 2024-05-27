@@ -26,7 +26,7 @@ export default function AdminDashboard() {
   return (
     <section className='pt-28 px-20 text-encode text-primary-dark-gray'>
       <div className='flex justify-end'>
-        <button className=' border border-primary-dark-gray px-9 py-2 rounded-full font-medium'>ADD NEW PRODUCT</button>
+        <Link to={'/admin/dashboard/new-product'} className=' border border-primary-dark-gray px-9 py-2 rounded-full font-medium'>ADD NEW PRODUCT</Link>
       </div>
       <h1 className='uppercase text-3xl text-center pb-14 font-medium'>
         admin dashboard
