@@ -14,7 +14,8 @@ export default function Navbar({
 }) {
   const { isAdmin, token } = useUser();
 
-  console.log({token})
+  console.log({ token });
+  console.log({ isAdmin });
   return (
     <header className='fixed w-screen'>
       <nav className='font-encode font-medium  h-20 max-w-[100vw]'>
@@ -23,22 +24,24 @@ export default function Navbar({
             <Link to='/'>HOME</Link>
             <Link to={'/products'}>PRODUCTS</Link>
             <Link to={'/about'}>ABOUT</Link>
-            {/**
-            <Link to={'/profile'}>PROFILE</Link>
-          */}
+
             {isAdmin && <Link to='/admin/dashboard'>DASHBOARD</Link>}
           </div>
           <div className='flex gap-8 h-5 pt-2'>
             <img src={search} alt='Search' className='h-[1.1rem]' />
-            {/**<Link to={'/login'} onClick={toggleFormWrapper}>*/}
+
             <img
               src={user}
               alt='User'
               className='h-[1.1rem]'
               onClick={() => setIsSliderHidden(!isSliderHidden)}
             />
-            {!isSliderHidden && (token ? <ProfilePage /> : <SliderWrapper toggleFormWrapper={toggleFormWrapper}/>)}
-            {/**  </Link>*/}
+            {!isSliderHidden &&
+              (token ? (
+                <ProfilePage />
+              ) : (
+                <SliderWrapper toggleFormWrapper={toggleFormWrapper} />
+              ))}
           </div>
         </section>
         <Logo />
