@@ -5,7 +5,7 @@ import user from '../../../assets/icons/user.svg';
 import search from '../../../assets/icons/search.svg';
 import { useUser } from '../../context/UserContext';
 import ProfilePage from '../profiledropdown/ProfilePage';
-import SliderWrapper from '../profiledropdown/sliderWrapper';
+import SliderWrapper from '../profiledropdown/SliderWrapper';
 
 export default function Navbar({
   isSliderHidden,
