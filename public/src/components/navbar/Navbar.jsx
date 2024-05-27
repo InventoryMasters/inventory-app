@@ -6,6 +6,8 @@ import search from '../../../assets/icons/search.svg';
 import { useUser } from '../../context/UserContext';
 import ProfilePage from '../profiledropdown/ProfilePage';
 import SliderWrapper from '../profiledropdown/sliderWrapper';
+import SearchBar from '../products/search-bar/SearchBar';
+import apiURL from '../../api';
 
 export default function Navbar({
   isSliderHidden,
@@ -13,6 +15,12 @@ export default function Navbar({
   toggleFormWrapper,
 }) {
   const { token } = useUser();
+  const handleSearch = (searchQuery) => {
+    const urlSearchParams = new URLSearchParams({ name: searchQuery });
+    const queryString = urlSearchParams.toString();
+    const url = `http://localhost:1234/products?${queryString}`;
+    window.location.href = url;
+  }
 
   return (
     <header className='fixed w-screen'>
@@ -26,6 +34,7 @@ export default function Navbar({
           </div>
           <div className='flex gap-8 h-5 pt-2'>
             <img src={search} alt='Search' className='h-[1.1rem]' />
+            <SearchBar onSearch={handleSearch} />
             {/**<Link to={'/login'} onClick={toggleFormWrapper}>*/}
             <img
               src={user}
@@ -33,7 +42,7 @@ export default function Navbar({
               className='h-[1.1rem]'
               onClick={() => setIsSliderHidden(!isSliderHidden)}
             />
-            {!isSliderHidden && (token ? <ProfilePage /> : <SliderWrapper toggleFormWrapper={toggleFormWrapper}/>)}
+            {!isSliderHidden && (token ? <ProfilePage /> : <SliderWrapper toggleFormWrapper={toggleFormWrapper} />)}
             {/**  </Link>*/}
           </div>
         </section>

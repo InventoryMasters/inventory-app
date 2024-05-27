@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 import apiURL from '../../../api';
 import Filter from '../sort-filter/Filter';
@@ -21,7 +21,12 @@ export default function AllProducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${apiURL}/items`);
+        const searchQuery = new URLSearchParams(location.search).get('name');
+        const response = await axios.get(`${apiURL}/items`, {
+          params: {
+            name: searchQuery
+          }
+        });
         console.log('Fetched products:', response.data);
         setProducts(response.data);
       } catch (error) {
@@ -30,7 +35,7 @@ export default function AllProducts() {
     };
 
     fetchProducts();
-  }, []);
+  }, [location.search]);
 
   console.log({ products });
 
@@ -50,10 +55,10 @@ export default function AllProducts() {
       <section className='container mx-auto flex flex-col'>
         <div>
           <h1 className=' mt-10 uppercase font-medium text-lg text-center'>
-            All Products
+            Products {`(${products.length})`}
           </h1>
-          <Filter products={products} setProducts={setProducts}/>
-          <Sort products={products} setProducts={setProducts}/>
+          <Filter products={products} setProducts={setProducts} />
+          <Sort products={products} setProducts={setProducts} />
         </div>
         <div className='grid grid-cols-3 gap-12 gap-y-12 mt-10 self-center'>
           {Array.isArray(products) && products.length ? (
@@ -80,22 +85,23 @@ export default function AllProducts() {
           )}
         </div>
         {products ? (
-          <div className='text-center my-12'>
-            {currentPage > 1 ? (
-              <button onClick={() => setCurrentPage(currentPage - 1)}>
-                &lt;
-              </button>
-            ) : (
-              ''
-            )}
-            {currentPage}
-            {currentPage < paginatedProducts.length ? (
-              <button onClick={() => setCurrentPage(currentPage + 1)}>
-                &gt;
-              </button>
-            ) : (
-              ''
-            )}
+          <div className='text-center my-12'>{products.length > 9 ?
+            <div>
+              {currentPage > 1 ? (
+                <button onClick={() => setCurrentPage(currentPage - 1)}>
+                  &lt;
+                </button>
+              ) : (
+                ''
+              )}
+              {currentPage}
+              {currentPage < paginatedProducts.length ? (
+                <button onClick={() => setCurrentPage(currentPage + 1)}>
+                  &gt;
+                </button>
+              ) : (
+                ''
+              )}</div> : ''}
           </div>
         ) : (
           ''
