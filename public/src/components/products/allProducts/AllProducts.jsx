@@ -51,7 +51,7 @@ export default function AllProducts() {
           <h1 className=' mt-10 uppercase font-medium text-lg text-center'>
             All Products
           </h1>
-          <SortFilter />
+          <SortFilter products={products} setProducts={setProducts}/>
         </div>
         <div className='grid grid-cols-3 gap-12 gap-y-12 mt-10 self-center'>
           {Array.isArray(products) && products.length ? (
