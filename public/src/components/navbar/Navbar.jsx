@@ -42,7 +42,7 @@ export default function Navbar({
               className='h-[1.1rem]'
               onClick={() => setIsSliderHidden(!isSliderHidden)}
             />
-            {!isSliderHidden && (token ? <ProfilePage /> : <SliderWrapper toggleFormWrapper={toggleFormWrapper} />)}
+            {!isSliderHidden && (token ? <ProfilePage /> : <SliderWrapper toggleFormWrapper={toggleFormWrapper}/>)}
             {/**  </Link>*/}
           </div>
         </section>
