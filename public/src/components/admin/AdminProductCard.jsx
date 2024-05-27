@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 export default function AdminProductCard({ product }) {
   console.log({ product });
   return (
     <section className='max-w-[100dvw]'>
       <div className='w-fit'>
-        <div key={product.id} className='flex border border-black w-fit gap-8'>
+        <div key={product.id} className='flex w-fit gap-8'>
           <img
             className='w-[250px]'
             src={product.imageUrl}
@@ -22,17 +23,17 @@ export default function AdminProductCard({ product }) {
               <span className='font-semi-bold pb-1'>ID: </span>
               {product.id}
             </p>
-            <p className='italic'>
-              {' '}
-              <span className='font-semi-bold not-italic'>CATEGORY: </span>
-              {product.category.name}
-            </p>
+            {product.category && (
+              <p className='italic'>
+                <span className='font-semi-bold not-italic'>CATEGORY: </span>
+                {product.category.name}
+              </p>
+            )}
             <p>
               <span className='font-semi-bold'>QTY IN STOCK:</span>{' '}
               {product.qty}
             </p>
             <p className=''>
-              {' '}
               <span className='font-semi-bold'>PRICE: </span>${product.price}
             </p>
 
