@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import apiURL from '../../../api';
 import shevronLeft from '../../../../assets/icons/shevron-left.svg';
-import ProductCard from './productCard';
+import ProductCard from './ProductCard';
 
 export default function SingleProduct() {
   const { id } = useParams();
