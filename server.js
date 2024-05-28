@@ -9,6 +9,7 @@ const init = async () => {
 
     app.listen(PORT, () => {
       console.log(`Server listening at http://localhost:${PORT}`);
+      console.log(PORT);
     });
   } catch (error) {
     console.error('Error starting server:', error);
