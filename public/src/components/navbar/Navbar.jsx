@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import user from '../../../assets/icons/user.svg';
@@ -8,22 +8,40 @@ import ProfilePage from '../profiledropdown/userProfile/ProfilePage';
 import SliderWrapper from '../profiledropdown/SliderWrapper';
 import SearchBar from '../products/search-bar/SearchBar';
 import apiURL from '../../api';
+import { jwtDecode } from 'jwt-decode';
 
 export default function Navbar({
   isSliderHidden,
   setIsSliderHidden,
   toggleFormWrapper,
 }) {
-  const { token, isAdmin } = useUser();
+  const { token } = useUser();
+  const [isSearchHidden, setIsSearchHidden] = useState(true);
+
   const handleSearch = (searchQuery) => {
     const urlSearchParams = new URLSearchParams({ name: searchQuery });
     const queryString = urlSearchParams.toString();
-    const url = `http://localhost:1234/products?${queryString}`;
+    const url = `https://cure-skin.onrender.com/products?${queryString}`;
     window.location.href = url;
   };
 
+  const isAdmin = () => {
+    try {
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        console.log({ decodedToken });
+        return decodedToken.role === 'ADMIN';
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.error('Error decoding token:', error);
+    }
+    return false;
+  };
+
   console.log({ token });
-  console.log({ isAdmin });
+  console.log({ isAdmin: isAdmin() });
   return (
     <header className='fixed w-screen'>
       <nav className='font-encode font-medium  h-20 max-w-[100vw]'>
@@ -33,11 +51,11 @@ export default function Navbar({
             <Link to={'/products'}>PRODUCTS</Link>
             <Link to={'/about'}>ABOUT</Link>
 
-            {isAdmin && <Link to='/admin/dashboard'>DASHBOARD</Link>}
+            {isAdmin() && token && <Link to='/admin/dashboard'>DASHBOARD</Link>}
           </div>
-          <div className='flex gap-8 h-5 pt-2'>
-            <img src={search} alt='Search' className='h-[1.1rem]' />
-            <SearchBar onSearch={handleSearch} />
+          <div className='flex gap-4 h-5 pt-2'>
+            <img src={search} alt='Search' className='h-[1.1rem]' onClick={() => setIsSearchHidden(false)}/>
+            <SearchBar onSearch={handleSearch} isSearchHidden={isSearchHidden}/>
             <img
               src={user}
               alt='User'

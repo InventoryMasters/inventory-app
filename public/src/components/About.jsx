@@ -1,18 +1,22 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 // import banner from '../../assets/allProdsBanners'
 
-export default function About() {
+export default function About({ isSliderHidden }) {
   return (
     <main className='w-full font-encode flex justify-center flex-col items-center text-primary-dark-gray'>
       <section className=''>
         <div className='relative text-white'>
-          <header className='absolute bg-transparent top-36 right-1/2 uppercase translate-x-[70%] translate-y-[60%]'>
-            <p className='bg-transparent uppercase font-thin'>our promise</p>
-            <span className='bg-transparent text-3xl font-medium'>
-              skin health since 1986
-            </span>
-          </header>
+          {!isSliderHidden ? (
+            ''
+          ) : (
+            <header className='absolute bg-transparent top-36 right-1/2 uppercase translate-x-[70%] translate-y-[60%]'>
+              <p className='bg-transparent uppercase font-thin'>our promise</p>
+              <span className='bg-transparent text-3xl font-medium'>
+                skin health since 1986
+              </span>
+            </header>
+          )}
         </div>
         <img
           src='https://www.teamdrjoseph.com/cms/wp-content/uploads/148A1649-Kopie.jpg.webp'
@@ -113,4 +117,3 @@ export default function About() {
     </main>
   );
 }
-

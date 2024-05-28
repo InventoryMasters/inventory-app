@@ -6,7 +6,7 @@ import Filter from '../sort-filter/Filter';
 import Sort from '../sort-filter/Sort';
 import { Link } from 'react-router-dom';
 
-export default function AllProducts() {
+export default function AllProducts({  isSliderHidden  }) {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 9;
@@ -24,8 +24,8 @@ export default function AllProducts() {
         const searchQuery = new URLSearchParams(location.search).get('name');
         const response = await axios.get(`${apiURL}/items`, {
           params: {
-            name: searchQuery
-          }
+            name: searchQuery,
+          },
         });
         console.log('Fetched products:', response.data);
         setProducts(response.data);
@@ -47,9 +47,13 @@ export default function AllProducts() {
           className='w-full object-cover h-80 rounded-b-xl'
         />
         <div className='relative text-white '>
-          <h1 className='uppercase text-[7rem] absolute -translate-x-[45%] -translate-y-[140%] bg-transparent text-nowrap'>
-            all products
-          </h1>
+          {!isSliderHidden ? (
+            ''
+          ) : (
+            <h1 className='uppercase text-[7rem] absolute -translate-x-[45%] -translate-y-[140%] bg-transparent text-nowrap'>
+              all products
+            </h1>
+          )}
         </div>
       </section>
       <section className='container mx-auto flex flex-col'>
@@ -85,23 +89,28 @@ export default function AllProducts() {
           )}
         </div>
         {products ? (
-          <div className='text-center my-12'>{products.length > 9 ?
-            <div>
-              {currentPage > 1 ? (
-                <button onClick={() => setCurrentPage(currentPage - 1)}>
-                  &lt;
-                </button>
-              ) : (
-                ''
-              )}
-              {currentPage}
-              {currentPage < paginatedProducts.length ? (
-                <button onClick={() => setCurrentPage(currentPage + 1)}>
-                  &gt;
-                </button>
-              ) : (
-                ''
-              )}</div> : ''}
+          <div className='text-center my-12'>
+            {products.length > 9 ? (
+              <div>
+                {currentPage > 1 ? (
+                  <button onClick={() => setCurrentPage(currentPage - 1)}>
+                    &lt;
+                  </button>
+                ) : (
+                  ''
+                )}
+                {currentPage}
+                {currentPage < paginatedProducts.length ? (
+                  <button onClick={() => setCurrentPage(currentPage + 1)}>
+                    &gt;
+                  </button>
+                ) : (
+                  ''
+                )}
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         ) : (
           ''

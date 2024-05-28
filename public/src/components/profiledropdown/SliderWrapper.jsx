@@ -17,7 +17,7 @@ export default function SliderWrapper({
     <section
       className={
         !isSliderHidden
-          ? 'h-[calc(100dvh_-_5rem)] w-[100dvw] flex flex-col fixed bottom-0 right-0 bg-primary-light-gray/20 backdrop-blur-md z-[10000]'
+          ? 'h-[calc(100dvh_-_5rem)] w-[100dvw] flex flex-col fixed bottom-0 right-0 bg-primary-light-gray/20 backdrop-blur-md z-[100]'
           : 'hidden'
       }
     >

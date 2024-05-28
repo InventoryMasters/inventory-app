@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, isSearchHidden }) {
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleChange = (event) => {
@@ -14,14 +14,14 @@ export default function SearchBar({ onSearch }) {
     }
     return (
         <>
-            <div>
+            <div className='relative'>
                 <input
                     type='text'
                     value={searchQuery}
                     onChange={handleChange}
                     onKeyDown={handleKeyPress}
-                    placeholder='Search products...'
-                    className='h-6'
+                    placeholder='search products...'
+                    className={!isSearchHidden ? 'h-6 text-primary-dark-gray text-sm font-encode absolute  top-0 right-6 -translate-y-1 -translate-x-4 rounded-full py-2 px-2 border border-black' : 'hidden'}
                 />
             </div>
         </>

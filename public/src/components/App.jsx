@@ -30,8 +30,14 @@ export const App = () => {
       />
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/products' element={<AllProducts />} />
+        <Route
+          path='/about'
+          element={<About isSliderHidden={isSliderHidden} />}
+        />
+        <Route
+          path='/products'
+          element={<AllProducts isSliderHidden={isSliderHidden} />}
+        />
         <Route path='/products/:id' element={<SingleProduct />} />
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
         <Route
