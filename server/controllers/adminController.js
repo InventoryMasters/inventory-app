@@ -26,14 +26,26 @@ const createItem = [
   },
   async (req, res, next) => {
     try {
-      const newItem = await Item.create(req.body);
+      const { name, description, price, qty, imageUrl, category } = req.body;
+
+    
+      const newItem = await Item.create({
+        name,
+        description,
+        price,
+        qty,
+        imageUrl,
+        category: Array.isArray(category) ? category.join(', ') : category, 
+      });
+
       res.status(201).json(newItem);
     } catch (error) {
-      next(error)
+      next(error);
       res.status(500).send(error);
     }
   },
 ];
+
 
 const updateItem = [
   body('name')

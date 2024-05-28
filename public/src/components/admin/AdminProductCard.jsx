@@ -31,6 +31,7 @@ export default function AdminProductCard({ product, onDelete }) {
     }
   }, [showConfirmation]);
 
+  // console.log({product})
   return (
     <section className='max-w-[100dvw]'>
       <div className='w-fit'>

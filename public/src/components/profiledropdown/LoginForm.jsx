@@ -1,25 +1,44 @@
-// Login.js
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
-import apiURL from '../../api'
+import apiURL from '../../api';
 
 const Login = ({ setFormMode, toggleFormWrapper }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const { login } = useUser();
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const zodLogin = z.object({
+    email: z.string().email({ message: 'Please enter a valid email address' }),
+    password: z
+      .string()
+      .min(8, { message: 'Password must be at least 8 characters long' }),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(zodLogin),
+  });
+
+  const onSubmit = async (data) => {
     try {
-      const response = await axios.post(`${apiURL}/auth/login`, { email, password });
+      const response = await axios.post(`${apiURL}/auth/login`, data);
       login(response.data.token);
-      toggleFormWrapper()
+      toggleFormWrapper();
     } catch (error) {
-      setError('Invalid credentials');
+      if (error.response && error.response.status === 404) {
+        setError('authentication', {
+          type: 'manual',
+          message: 'User not found. Please check your email and password.',
+        });
+      } else {
+        console.error('Server error:', error);
+        // Handle other errors here, if needed
+      }
     }
   };
 
@@ -28,34 +47,39 @@ const Login = ({ setFormMode, toggleFormWrapper }) => {
       <h2 className='text-center text-[3rem] bg-transparent pb-20 font-semi-bold tracking-wide text-primary-dark-gray/85'>
         login
       </h2>
-      {error && <p>{error}</p>}
       <form
-        onSubmit={handleSubmit}
-        className='flex flex-col bg-transparent '
+        onSubmit={handleSubmit(onSubmit)}
+        className='flex flex-col bg-transparent'
       >
-        <div className='flex flex-col bg-transparent '>
+        {errors.authentication && (
+          <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+            {errors.authentication.message}
+          </p>
+        )}
+        <div className='flex flex-col bg-transparent'>
           <label className='slider-label'>email</label>
-          <input
-            type='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className='slider-input'
-          />
-
+          <input type='email' {...register('email')} className='slider-input' />
+          {errors.email && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.email.message}
+            </p>
+          )}
           <label className='slider-label'>password</label>
           <input
             type='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
+            {...register('password')}
             className='slider-input'
           />
+          {errors.password && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.password.message}
+            </p>
+          )}
         </div>
         <p className='bg-transparent text-center -mt-8 text-sm tracking-wide'>
           don't have an account? sign up
           <span
-            onClick={async () => setFormMode('signup')}
+            onClick={() => setFormMode('signup')}
             className='bg-transparent font-semi-bold cursor-pointer'
           >
             {' '}

@@ -5,7 +5,12 @@ import apiURL from '../../../api';
 
 export default function EditUserInfo({ user, onUpdate }) {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, handleSubmit } = useForm({
+  const [serverError, setServerError] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       firstName: user.firstName,
       lastName: user.lastName,
@@ -14,17 +19,23 @@ export default function EditUserInfo({ user, onUpdate }) {
     },
   });
 
-  console.log({ user });
   const onSubmit = async (data) => {
     try {
       const newData = { ...data, passwordHash: data.password };
       delete newData.password;
       const response = await axios.put(`${apiURL}/users/${user.id}`, newData);
       onUpdate(response.data);
-      // console.log('updated user ');
+      setServerError('');
     } catch (err) {
       console.error(err);
-      throw err;
+      if (err.response) {
+        console.log('Server error:', err.response.data);
+        setServerError(err.response.data.message);
+      } else if (err.request) {
+        console.log('No response received from server:', err.request);
+      } else {
+        console.log('Error setting up request:', err.message);
+      }
     }
   };
 
@@ -33,6 +44,7 @@ export default function EditUserInfo({ user, onUpdate }) {
       <h1 className='bg-transparent text-center text-[3rem] pb-10'>
         edit profile
       </h1>
+
       <form onSubmit={handleSubmit(onSubmit)} className='bg-transparent w-full'>
         <div className='bg-transparent flex flex-col'>
           <label htmlFor='firstName' className='slider-label'>
@@ -41,9 +53,14 @@ export default function EditUserInfo({ user, onUpdate }) {
           <input
             type='text'
             id='firstName'
-            {...register('firstName')}
-            className='slider-input'
+            {...register('firstName', { required: 'first name is required' })}
+            className='slider-input font-light'
           />
+          {errors.firstName && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.firstName.message}
+            </p>
+          )}
 
           <label htmlFor='lastName' className='slider-label'>
             last name:
@@ -51,9 +68,14 @@ export default function EditUserInfo({ user, onUpdate }) {
           <input
             type='text'
             id='lastName'
-            {...register('lastName')}
-            className='slider-input'
+            {...register('lastName', { required: 'last name is required' })}
+            className='slider-input font-light'
           />
+          {errors.lastName && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.lastName.message}
+            </p>
+          )}
 
           <label htmlFor='email' className='slider-label'>
             email:
@@ -61,9 +83,14 @@ export default function EditUserInfo({ user, onUpdate }) {
           <input
             type='email'
             id='email'
-            {...register('email')}
-            className='slider-input'
+            {...register('email', { required: 'email is required' })}
+            className='slider-input font-light'
           />
+          {errors.email && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.email.message}
+            </p>
+          )}
 
           <label htmlFor='password' className='slider-label'>
             password:
@@ -72,15 +99,14 @@ export default function EditUserInfo({ user, onUpdate }) {
             type='password'
             id='password'
             {...register('password')}
-            // value={showPassword ? user.password : '********'}
-            // readOnly={!showPassword}
-            className='slider-input'
+            placeholder='************'
+            className='slider-input font-light '
           />
-          {/**
-          <button type='button' onClick={() => setShowPassword(!showPassword)}>
-          {showPassword ? 'Hide' : 'Show'} Password
-          </button>
-        */}
+          {errors.password && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.password.message}
+            </p>
+          )}
         </div>
 
         <button
