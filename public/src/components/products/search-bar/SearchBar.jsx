@@ -21,7 +21,7 @@ export default function SearchBar({ onSearch, isSearchHidden }) {
                     onChange={handleChange}
                     onKeyDown={handleKeyPress}
                     placeholder='search products...'
-                    className={!isSearchHidden ? 'h-6 text-primary-dark-gray text-sm font-encode absolute  top-0 right-6 -translate-y-1 -translate-x-4 rounded-full py-2 px-2 border border-black' : 'hidden'}
+                    className={!isSearchHidden ? 'h-6 text-primary-dark-gray text-sm font-light font-encode absolute  top-0 right-6 -translate-y-1 -translate-x-4 rounded-full py-2 px-2 border border-black' : 'hidden'}
                 />
             </div>
         </>
