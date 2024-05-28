@@ -9,7 +9,7 @@
     "server-dev": "nodemon server.js",
     "server-prod": "node server.js",
     "seed": "node server/seed.js",
-    "start": "npm run seed && npm run client-build && npm run server-prod"
+    "start": "npm run client-build && npm run server-prod"
   },
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
