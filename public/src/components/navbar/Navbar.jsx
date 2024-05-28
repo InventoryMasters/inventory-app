@@ -21,7 +21,7 @@ export default function Navbar({
   const handleSearch = (searchQuery) => {
     const urlSearchParams = new URLSearchParams({ name: searchQuery });
     const queryString = urlSearchParams.toString();
-    const url = `http://localhost:1234/products?${queryString}`;
+    const url = `https://cure-skin.onrender.com/products?${queryString}`;
     window.location.href = url;
   };
 
