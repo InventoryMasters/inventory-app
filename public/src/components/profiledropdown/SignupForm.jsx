@@ -12,21 +12,21 @@ export default function SignupForm({ setFormMode, toggleFormWrapper }) {
     .object({
       firstName: z
         .string()
-        .min(2, { message: 'First name must be at least 2 characters long' }),
+        .min(2, { message: 'first name must be at least 2 characters long' }),
       lastName: z
         .string()
-        .min(2, { message: 'Last name must be at least 2 characters long' }),
+        .min(2, { message: 'last name must be at least 2 characters long' }),
       email: z
         .string()
-        .email({ message: 'Please enter a valid e-mail address' }),
+        .email({ message: 'please enter a valid e-mail address' }),
       password: z
         .string()
-        .min(8, { message: 'Password must contain 8-24 characters' })
-        .max(24, { message: 'Password must contain 8-24 characters' }),
+        .min(8, { message: 'password must contain 8-24 characters' })
+        .max(24, { message: 'password must contain 8-24 characters' }),
       confirmPassword: z
         .string()
-        .min(8, { message: 'Password must contain 8-24 characters' })
-        .max(24, { message: 'Password must contain 8-24 characters' }),
+        .min(8, { message: 'password must contain 8-24 characters' })
+        .max(24, { message: 'password must contain 8-24 characters' }),
     })
     .strict()
     .refine(
@@ -89,45 +89,61 @@ export default function SignupForm({ setFormMode, toggleFormWrapper }) {
           <input
             className='slider-input'
             type='text'
-            placeholder={errors.firstName?.message || ''}
             {...register('firstName')}
           />
+          {errors.firstName && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.firstName.message}
+            </p>
+          )}
           <label htmlFor='last-name' className='slider-label'>
             last name
           </label>
           <input
             className='slider-input'
             type='text'
-            placeholder={errors.lastName?.message || ''}
             {...register('lastName')}
           />
+          {errors.lastName && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.lastName.message}
+            </p>
+          )}
           <label htmlFor='email' className='slider-label'>
             email
           </label>
-          <input
-            className='slider-input'
-            type='email'
-            placeholder={errors.email?.message || ''}
-            {...register('email')}
-          />
+          <input className='slider-input' type='email' {...register('email')} />
+          {errors.email && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.email.message}
+            </p>
+          )}
           <label htmlFor='password' className='slider-label'>
             password
           </label>
           <input
             className='slider-input'
             type='password'
-            placeholder={errors.password?.message || ''}
             {...register('password')}
           />
+          {errors.password && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.password.message}
+            </p>
+          )}
           <label htmlFor='confirm-password' className='slider-label'>
             confirm password
           </label>
           <input
             className='slider-input'
             type='password'
-            placeholder={errors.confirmPassword?.message || ''}
             {...register('confirmPassword')}
           />
+          {errors.confirmPassword && (
+            <p className='text-red-700 bg-transparent text-sm -translate-y-9'>
+              {errors.confirmPassword.message}
+            </p>
+          )}
         </div>
 
         <p className='bg-transparent text-center -mt-8 text-sm tracking-wide'>

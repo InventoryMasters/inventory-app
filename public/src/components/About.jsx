@@ -74,7 +74,7 @@ export default function About({ isSliderHidden }) {
         </div>
       </section>
 
-      <section className='py-20 px-44'>
+      <section className='py-20 px-44 '>
         <p className='text-3xl pl-64 text-right text-primary-dark-gray'>
           Nature has found answers to countless questions. We just have to look
           and engage with the genius that she possesses.
@@ -84,7 +84,7 @@ export default function About({ isSliderHidden }) {
         </p>
       </section>
 
-      <section className='flex bg-primary-popup/60 justify-center items-center gap-20 w-full py-20 pt-28'>
+      <section className='flex bg-[#DFDBD6] justify-center items-center gap-20 w-full py-20 pt-28'>
         <div className='max-w-[80vw] flex flex-row-reverse bg-transparent px-36 gap-16'>
           <div className='w-9/12 aspect-square'>
             <img src='https://www.teamdrjoseph.com/thumbnail/ba/3d/54/1678222818/02add7671f0b4ed1b481d353a7b51885_1920x1920.png' />

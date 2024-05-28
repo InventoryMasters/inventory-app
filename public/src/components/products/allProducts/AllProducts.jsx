@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import apiURL from '../../../api';
 import Filter from '../sort-filter/Filter';
 import Sort from '../sort-filter/Sort';
 import { Link } from 'react-router-dom';
 
-export default function AllProducts({  isSliderHidden  }) {
+export default function AllProducts({ isSliderHidden }) {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isSortHidden, setIsSortHidden] = useState(true);
+  const [isFilterHidden, setIsFilterHidden] = useState(true);
   const pageSize = 9;
 
   const paginate = (products, currentPage, pageSize) => {
@@ -39,6 +41,14 @@ export default function AllProducts({  isSliderHidden  }) {
 
   console.log({ products });
 
+  const toggleSort = () => {
+    setIsSortHidden(!isSortHidden);
+  };
+
+  const toggleFilter = () => {
+    setIsFilterHidden(!isFilterHidden);
+  };
+
   return (
     <section className='pt-20 font-encode '>
       <section className='w-full banner-container flex flex-col justify-center items-center px-4 '>
@@ -61,8 +71,20 @@ export default function AllProducts({  isSliderHidden  }) {
           <h1 className=' mt-10 uppercase font-medium text-lg text-center'>
             Products {`(${products.length})`}
           </h1>
-          <Filter products={products} setProducts={setProducts} />
-          <Sort products={products} setProducts={setProducts} />
+          <div className='flex items-center justify-end text-sm gap-8'>
+            <Filter
+              products={products}
+              setProducts={setProducts}
+              isFilterHidden={isFilterHidden}
+              toggleFilter={toggleFilter}
+            />
+            <Sort
+              products={products}
+              setProducts={setProducts}
+              isSortHidden={isSortHidden}
+              toggleSort={toggleSort}
+            />
+          </div>
         </div>
         <div className='grid grid-cols-3 gap-12 gap-y-12 mt-10 self-center'>
           {Array.isArray(products) && products.length ? (
