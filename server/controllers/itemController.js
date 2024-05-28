@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 const getAllItems = async (req, res, next) => {
     try {
         const { name } = req.query;
-        const options = {};
+        const options = { include: Category };
 
         if (name) {
             options.where = { name: { [Op.like]: `%${name}%` } };
