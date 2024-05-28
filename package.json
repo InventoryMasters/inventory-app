@@ -5,9 +5,11 @@
     "test": "jest",
     "build": "parcel build public/index.html",
     "client-dev": "parcel public/index.html --open",
+    "client-build": "parcel build public/index.html --dist-dir build",
     "server-dev": "nodemon server.js",
+    "server-prod": "node server.js",
     "seed": "node server/seed.js",
-    "start": "npm-run-all --parallel client-dev server-dev"
+    "start": "npm run seed && npm run client-build && npm run server-prod"
   },
   "dependencies": {
     "@babel/preset-env": "^7.15.0",
